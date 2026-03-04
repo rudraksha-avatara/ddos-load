@@ -141,7 +141,7 @@ log ""
 # --------- scripts executable ----------
 log "[*] Making scripts executable..."
 MAIN_SCRIPT="main-kali-linux.py"
-LOAD_SCRIPT="load_tester.py"
+LOAD_SCRIPT="main.py"
 
 [[ -f "$MAIN_SCRIPT" ]] || warn "Missing ${MAIN_SCRIPT} (skip chmod)"
 [[ -f "$LOAD_SCRIPT" ]] || warn "Missing ${LOAD_SCRIPT} (skip chmod)"
