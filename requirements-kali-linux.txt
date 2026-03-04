@@ -22,7 +22,7 @@ aiodns>=3.1.0
 
 # Fast character encoding detection
 # Speeds up response parsing
-cchardet>=2.1.7
+cchardet
 
 # Brotli compression support
 # Enables compressed response handling
