@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Kali Linux Installer Script
-# Testing Tool - Team Supreme X
+# DDoS Attack Tool - Team Supreme X
 #
 # Usage: chmod +x install-kali.sh && ./install-kali.sh
 #
@@ -38,7 +38,7 @@ fi
 # --------- banner ----------
 log "╔═══════════════════════════════════════════════════════════════════════╗"
 log "║                                                                       ║"
-log "║        Testing Tool - Kali Linux Installer                            ║"
+log "║              DDoS Attack Tool - Kali Linux Installer                  ║"
 log "║                    Developed by Team Supreme X                        ║"
 log "║                                                                       ║"
 log "╚═══════════════════════════════════════════════════════════════════════╝"
