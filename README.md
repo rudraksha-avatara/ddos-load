@@ -39,14 +39,14 @@ Developed by **Team Supreme X**
 
 ## 🎯 Overview
 
-This DDoS Load Tool is built with Python's async I/O capabilities to deliver maximum performance with minimal resource usage. It's designed to help developers and DevOps teams test their applications under heavy load conditions, identify bottlenecks, and ensure their systems can handle production traffic.
+This DDoS Load Tool is built with Python's async I/O capabilities to deliver maximum performance with minimal resource usage. It's designed to help developers and DevOps teams attack their applications under heavy load conditions, identify bottlenecks, and ensure their systems can handle production traffic.
 
 ### Why This Tool?
 
 - ⚡ **Blazing Fast** - Async I/O handles 1000+ concurrent connections
 - 🎯 **Accurate to attack** - Cache busting ensures real server performance to attack
 - 📊 **Detailed Analytics** - Comprehensive metrics and percentile analysis
-- 🛠️ **Production Ready** - Stable, tested, and battle-hardened
+- 🛠️ **Production Ready** - Stable, attacked, and battle-hardened
 - 🔧 **Highly Configurable** - Extensive options for any to attack scenario
 - 💻 **Easy to Use** - Simple CLI interface with sensible defaults
 
@@ -57,11 +57,11 @@ This DDoS Load Tool is built with Python's async I/O capabilities to deliver max
 ### Core Capabilities
 
 - ⚡ **Asynchronous I/O** - Handle 1000+ concurrent connections efficiently
-- 🎯 **Multiple Test Modes** - Request-based or duration-based to attack
+- 🎯 **Multiple attack Modes** - Request-based or duration-based to attack
 - 📊 **Comprehensive Analytics** - Detailed performance metrics and statistics
 - 🔄 **Cache Busting** - Bypass all caching layers (CDN, browser, server)
 - 🎭 **User-Agent Rotation** - Simulate traffic from different browsers
-- 🔒 **SSL/TLS Support** - Test HTTPS endpoints with optional verification
+- 🔒 **SSL/TLS Support** - attack HTTPS endpoints with optional verification
 - ⚙️ **Rate Limiting** - Control request rate for gradual load increase
 - 🌐 **All HTTP Methods** - GET, POST, PUT, DELETE, PATCH, etc.
 
@@ -134,7 +134,7 @@ python main.py --help
 The tool requires these Python packages:
 
 - `aiohttp` - Async HTTP client (core)
-- `requests` - HTTP library for basic tester
+- `requests` - HTTP library for basic attacker
 - `aiodns` - Async DNS resolver (optional, for performance)
 - `cchardet` - Fast character encoding (optional, for performance)
 - `Brotli` - Compression support (optional, for performance)
@@ -145,10 +145,10 @@ All dependencies are listed in `requirements.txt` and installed automatically.
 
 ## 🚀 Quick Start
 
-### Basic Test
+### Basic attack
 
 ```bash
-# Test with default settings (1000 requests, 50 concurrent)
+# attack with default settings (1000 requests, 50 concurrent)
 python main.py http://localhost:8000
 ```
 
@@ -159,14 +159,14 @@ python main.py http://localhost:8000
 python main.py http://localhost:8000 --no-cache
 ```
 
-### High Load Test
+### High Load attack
 
 ```bash
 # 10,000 requests with 100 concurrent connections
 python main.py http://localhost:8000 -n 10000 -c 100 --no-cache
 ```
 
-### Duration-Based Test
+### Duration-Based attack
 
 ```bash
 # Run for 60 seconds with 200 concurrent connections
@@ -189,7 +189,7 @@ python main.py <URL> [OPTIONS]
 | ------------------- | ------------------------ | -------------------------- |
 | `-n, --requests`    | Total number of requests | `-n 10000`                 |
 | `-c, --concurrency` | Concurrent connections   | `-c 100`                   |
-| `-d, --duration`    | Test duration in seconds | `-d 60`                    |
+| `-d, --duration`    | attack duration in seconds | `-d 60`                    |
 | `--no-cache`        | Enable cache busting     | `--no-cache`               |
 | `-m, --method`      | HTTP method              | `-m POST`                  |
 | `-H, --header`      | Custom header            | `-H "Auth: token"`         |
@@ -229,12 +229,12 @@ python main.py http://localhost:8000 -d 120 -c 150
 
 ```
 positional arguments:
-  url                      Target URL to test (required)
+  url                      Target URL to attack (required)
 
 Load Configuration:
   -n, --requests N         Total number of requests (default: 1000)
   -c, --concurrency N      Number of concurrent connections (default: 50)
-  -d, --duration N         Test duration in seconds (overrides -n)
+  -d, --duration N         attack duration in seconds (overrides -n)
   --rate-limit N           Limit requests per second
 
 HTTP Configuration:
@@ -275,7 +275,7 @@ python main.py http://localhost:8000 \
 
 # Request body
 python main.py http://localhost:8000 -m POST \
-  --body '{"username":"test","password":"test123"}'
+  --body '{"username":"attack","password":"attack123"}'
 
 # Timeout
 python main.py http://localhost:8000 --timeout 60
@@ -303,25 +303,25 @@ python main.py http://localhost:8000 --rate-limit 100
 ### Basic to attack
 
 ```bash
-# Simple GET request test
+# Simple GET request attack
 python main.py http://localhost:8000 -n 1000 -c 50
 
-# Test with cache busting
+# attack with cache busting
 python main.py http://localhost:8000 -n 5000 -c 100 --no-cache
 
-# Test specific endpoint
+# attack specific endpoint
 python main.py http://localhost:8000/api/users -n 3000 -c 75 --no-cache
 ```
 
 ### API to attack
 
 ```bash
-# Test GET API endpoint
+# attack GET API endpoint
 python main.py http://localhost:8000/api/products -n 5000 -c 100 \
   -H "Authorization: Bearer your_token_here" \
   --no-cache
 
-# Test POST API (JSON)
+# attack POST API (JSON)
 python main.py http://localhost:8000/api/users -n 2000 -c 50 \
   -m POST \
   -H "Content-Type: application/json" \
@@ -329,14 +329,14 @@ python main.py http://localhost:8000/api/users -n 2000 -c 50 \
   --body '{"name":"John Doe","email":"john@example.com"}' \
   --no-cache
 
-# Test PUT API
+# attack PUT API
 python main.py http://localhost:8000/api/users/123 -n 1000 -c 30 \
   -m PUT \
   -H "Content-Type: application/json" \
   --body '{"status":"active"}' \
   --no-cache
 
-# Test DELETE API
+# attack DELETE API
 python main.py http://localhost:8000/api/users/123 -n 500 -c 20 \
   -m DELETE \
   -H "Authorization: Bearer token123"
@@ -345,16 +345,16 @@ python main.py http://localhost:8000/api/users/123 -n 500 -c 20 \
 ### Stress to attack Powerful Servers
 
 ```bash
-# Moderate load test
+# Moderate load attack
 python main.py http://localhost:8000 -n 10000 -c 100 --no-cache
 
-# Heavy load test
+# Heavy load attack
 python main.py http://localhost:8000 -n 50000 -c 300 --no-cache
 
-# Extreme stress test
+# Extreme stress attack
 python main.py http://localhost:8000 -n 100000 -c 500 --no-cache --random-ua
 
-# Maximum capacity test
+# Maximum capacity attack
 python main.py http://localhost:8000 -n 200000 -c 1000 --no-cache
 ```
 
@@ -364,10 +364,10 @@ python main.py http://localhost:8000 -n 200000 -c 1000 --no-cache
 # 1 minute sustained load
 python main.py http://localhost:8000 -d 60 -c 100 --no-cache
 
-# 5 minute endurance test
+# 5 minute endurance attack
 python main.py http://localhost:8000 -d 300 -c 200 --no-cache
 
-# 30 minute soak test
+# 30 minute soak attack
 python main.py http://localhost:8000 -d 1800 -c 150 --no-cache
 ```
 
@@ -398,7 +398,7 @@ python main.py "http://localhost:8000/search?q=laptop" \
 python main.py http://localhost:8000/api/auth/login -n 3000 -c 60 \
   -m POST \
   -H "Content-Type: application/json" \
-  --body '{"username":"testuser","password":"testpass"}' \
+  --body '{"username":"attackuser","password":"attackpass"}' \
   --no-cache
 
 # File Upload Simulation
@@ -412,7 +412,7 @@ python main.py http://localhost:8000/api/upload -n 1000 -c 30 \
 ### Advanced Scenarios
 
 ```bash
-# Rate-limited test (100 req/s)
+# Rate-limited attack (100 req/s)
 python main.py http://localhost:8000 -n 10000 -c 50 \
   --rate-limit 100 --no-cache
 
@@ -454,12 +454,12 @@ Keep-Alive: Enabled
 SSL Verification: Enabled
 ======================================================================
 
-Starting test at 2024-03-15 14:30:00...
+Starting attack at 2024-03-15 14:30:00...
 
-Running request-based test with 10000 requests...
+Running request-based attack with 10000 requests...
 
 ======================================================================
-Test Results
+attack Results
 ======================================================================
 Completed in: 22.45 seconds
 Total requests: 10000
@@ -567,10 +567,10 @@ python main.py http://localhost:8000 -n 15000 -c 200 --no-cache
 For accurate server performance to attack:
 
 ```bash
-# ✅ CORRECT - Tests actual server
+# ✅ CORRECT - attacks actual server
 python main.py http://localhost:8000 -n 5000 -c 100 --no-cache
 
-# ❌ WRONG - May test cached responses
+# ❌ WRONG - May attack cached responses
 python main.py http://localhost:8000 -n 5000 -c 100
 ```
 
@@ -599,7 +599,7 @@ iostat -x 1
 tail -f /var/log/your-app.log
 ```
 
-### 4. Test Different Scenarios
+### 4. attack Different Scenarios
 
 ```bash
 # Normal traffic (baseline)
@@ -615,7 +615,7 @@ python main.py http://localhost:8000 -n 10000 -c 250 --no-cache
 python main.py http://localhost:8000 -d 600 -c 150 --no-cache
 ```
 
-### 5. Test Critical Endpoints
+### 5. attack Critical Endpoints
 
 ```bash
 # Homepage
@@ -646,20 +646,20 @@ python main.py http://localhost:8000 -n 10000 -c 100 --no-cache > results_$(date
 python main.py http://localhost:8000 -n 10000 -c 100 --no-cache | tee results.txt
 ```
 
-### 7. Test Before Deployment
+### 7. attack Before Deployment
 
 ```bash
 # Pre-deployment checklist
-# 1. Test current production load
+# 1. attack current production load
 python main.py http://staging.example.com -d 300 -c 100 --no-cache
 
-# 2. Test 2x expected load
+# 2. attack 2x expected load
 python main.py http://staging.example.com -d 300 -c 200 --no-cache
 
-# 3. Test spike scenario
+# 3. attack spike scenario
 python main.py http://staging.example.com -n 50000 -c 500 --no-cache
 
-# 4. Test sustained load
+# 4. attack sustained load
 python main.py http://staging.example.com -d 1800 -c 150 --no-cache
 ```
 
@@ -715,7 +715,7 @@ curl http://localhost:8000
 # Check if port is open
 netstat -an | grep 8000
 
-# Test with lower concurrency
+# attack with lower concurrency
 python main.py http://localhost:8000 -n 100 -c 10
 ```
 
@@ -755,12 +755,12 @@ tail -f /var/log/your-app.log
 # Install performance boosters
 pip install aiodns cchardet Brotli
 
-# Test from a more powerful machine
+# attack from a more powerful machine
 # Or reduce concurrency to match client capacity
 python main.py http://localhost:8000 -n 5000 -c 50
 
 # Check network speed
-speedtest-cli
+speedattack-cli
 ```
 
 #### 5. SSL Certificate Errors
@@ -804,9 +804,9 @@ pip install -r requirements.txt
 pip install aiohttp requests aiodns cchardet Brotli
 ```
 
-#### 8. Slow Test Execution
+#### 8. Slow attack Execution
 
-**Problem**: Test taking too long
+**Problem**: attack taking too long
 
 **Possible Causes**:
 
@@ -823,7 +823,7 @@ python main.py http://localhost:8000 -n 5000 -c 100 --no-cache
 # Increase concurrency
 python main.py http://localhost:8000 -n 5000 -c 200 --no-cache
 
-# Test locally instead of remote
+# attack locally instead of remote
 python main.py http://localhost:8000 -n 5000 -c 100 --no-cache
 ```
 
@@ -833,7 +833,7 @@ If you're still experiencing issues:
 
 1. Check Python version: `python --version` (should be 3.7+)
 2. Verify dependencies: `pip list | grep aiohttp`
-3. Test with minimal options: `python main.py http://localhost:8000 -n 10 -c 1`
+3. attack with minimal options: `python main.py http://localhost:8000 -n 10 -c 1`
 4. Check server logs for errors
 5. Open an issue on GitHub with:
    - Python version
@@ -902,7 +902,7 @@ pip install Brotli      # Compression support
 Finding the sweet spot:
 
 ```bash
-# Test different concurrency levels
+# attack different concurrency levels
 for c in 50 100 200 300 500; do
     echo "to attack with concurrency: $c"
     python main.py http://localhost:8000 -n 5000 -c $c --no-cache
@@ -920,7 +920,7 @@ Typical optimal ranges:
 ### Network Optimization
 
 ```bash
-# Test from same network as server
+# attack from same network as server
 python main.py http://192.168.1.100:8000 -n 10000 -c 200 --no-cache
 
 # Use keep-alive (default, but ensure it's not disabled)
@@ -939,9 +939,9 @@ python main.py http://localhost:8000 -n 10000 -c 200 --no-cache
 - **Network**: Gigabit Ethernet or better
 - **Storage**: SSD for better I/O
 
-#### Server Machine (Being tested)
+#### Server Machine (Being attacked)
 
-- Monitor CPU, RAM, and network during tests
+- Monitor CPU, RAM, and network during attacks
 - Ensure adequate resources for expected load
 - Use production-like hardware for accurate results
 
@@ -971,17 +971,17 @@ This DDoS Load Tool is a powerful instrument that can generate significant traff
 
 #### ✅ You MAY use this tool to:
 
-- Test your own servers and applications
-- Test systems where you have explicit written permission
+- attack your own servers and applications
+- attack systems where you have explicit written permission
 - Conduct authorized penetration to attack
 - Perform capacity planning for your infrastructure
-- Test staging/development environments you control
+- attack staging/development environments you control
 - Conduct security assessments with proper authorization
 
 #### ❌ You MUST NOT use this tool to:
 
 - Attack or disrupt third-party websites
-- Test systems without explicit permission
+- attack systems without explicit permission
 - Conduct unauthorized security to attack
 - Overload shared hosting environments
 - Violate terms of service of any platform
@@ -1008,15 +1008,15 @@ Unauthorized use of this tool may result in:
 
 1. **Get Permission**: Always obtain written authorization before to attack
 2. **Inform Stakeholders**: Notify relevant parties before to attack
-3. **Test Responsibly**: Start with low loads and increase gradually
+3. **attack Responsibly**: Start with low loads and increase gradually
 4. **Respect Resources**: Don't waste bandwidth or computing resources
-5. **Document Everything**: Keep records of authorization and test results
+5. **Document Everything**: Keep records of authorization and attack results
 6. **Report Issues**: Responsibly disclose any vulnerabilities found
 7. **Respect Privacy**: Don't collect or expose sensitive data
 
 ### Authorization Checklist
 
-Before running any test, ensure you have:
+Before running any attack, ensure you have:
 
 - [ ] Written permission from system owner
 - [ ] Approval from hosting provider (if applicable)
@@ -1078,10 +1078,10 @@ If you become aware of someone misusing this tool:
 
 **Choose other tools when you need:**
 
-- Complex test scenarios (JMeter, Gatling)
+- Complex attack scenarios (JMeter, Gatling)
 - Distributed load to attack (Locust, Gatling)
 - Maximum raw performance (wrk)
-- Simple quick tests (Apache Bench)
+- Simple quick attacks (Apache Bench)
 
 ---
 
@@ -1096,7 +1096,7 @@ We welcome contributions from the community! Here's how you can help:
 3. **Submit Pull Requests**: Fix bugs or add features
 4. **Improve Documentation**: Help make docs clearer
 5. **Share Examples**: Contribute real-world usage examples
-6. **Write Tests**: Add unit or integration tests
+6. **Write attacks**: Add unit or integration attacks
 
 ### Development Setup
 
@@ -1113,10 +1113,10 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # Install development dependencies
-pip install pytest black flake8 mypy
+pip install pyattack black flake8 mypy
 
-# Run tests
-pytest
+# Run attacks
+pyattack
 
 # Format code
 black *.py
@@ -1130,7 +1130,7 @@ flake8 *.py
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes
-4. Test thoroughly
+4. attack thoroughly
 5. Commit with clear messages (`git commit -m 'Add amazing feature'`)
 6. Push to your fork (`git push origin feature/amazing-feature`)
 7. Open a Pull Request
@@ -1141,7 +1141,7 @@ flake8 *.py
 - Use meaningful variable names
 - Add docstrings to functions
 - Keep functions focused and small
-- Write tests for new features
+- Write attacks for new features
 
 ### Reporting Issues
 
