@@ -2,7 +2,7 @@
 # Install with: pip install -r requirements.txt
 
 # Core dependencies
-aiohttp>=3.9.0          # Async HTTP client for high-performance requests
+aiohttp                 # Async HTTP client for high-performance requests
 requests>=2.31.0        # HTTP library for basic load tester
 
 # Optional but recommended for better performance
