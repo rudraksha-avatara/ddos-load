@@ -6,7 +6,7 @@
 ![Python](https://img.shields.io/badge/Python-3.7+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Security](https://img.shields.io/badge/DDoS-Attack-red?style=for-the-badge)
 
-**Professional DDoS Load Tool for Security Professionals**
+**Professional DDoS Load Tool for Powerfull Attacks**
 
 Optimized for Kali Linux | Penetration Testing | Security Assessments
 
