@@ -164,15 +164,15 @@ fi
 
 # --------- optional symlink ----------
 if [[ -f "$MAIN_SCRIPT" ]]; then
-  read -r -p "Create system-wide command 'loadtest'? (y/n) " REPLY
+  read -r -p "Create system-wide command 'ddos-load'? (y/n) " REPLY
   if [[ "${REPLY:-n}" =~ ^[Yy]$ ]]; then
     if [[ -z "$SUDO" ]]; then
       warn "You are running as root; will create symlink directly."
     fi
     SCRIPT_PATH="${SCRIPT_DIR}/${MAIN_SCRIPT}"
-    $SUDO ln -sf "$SCRIPT_PATH" /usr/local/bin/loadtest
-    ok "Created command: loadtest"
-    log "  You can now run: loadtest http://target.com -n 1000 -c 50"
+    $SUDO ln -sf "$SCRIPT_PATH" /usr/local/bin/ddos-load
+    ok "Created command: ddos-load"
+    log "  You can now run: ddos-load http://target.com -n 1000 -c 50"
   fi
   log ""
 fi
