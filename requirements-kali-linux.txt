@@ -7,7 +7,7 @@
 # ============================================================================
 
 # Async HTTP client for high-performance requests
-aiohttp>=3.9.0
+aiohttp
 
 # HTTP library for basic to attack (fallback)
 requests>=2.31.0
