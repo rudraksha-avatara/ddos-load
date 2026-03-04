@@ -1,147 +1,214 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
-# Installation Script for Kali Linux
-# DDoS Attack Tool - Team Supreme X
+# Kali Linux Installer Script
+# Testing Tool - Team Supreme X
 #
-# Usage: ./install-kali.sh
+# Usage: chmod +x install-kali.sh && ./install-kali.sh
 #
 
-set -e
+set -Eeuo pipefail
 
-echo "╔═══════════════════════════════════════════════════════════════════════╗"
-echo "║                                                                       ║"
-echo "║        DDoS Attack Tool - Kali Linux Installer             ║"
-echo "║                    Developed by Team Supreme X                        ║"
-echo "║                                                                       ║"
-echo "╚═══════════════════════════════════════════════════════════════════════╝"
-echo ""
+# --------- helpers ----------
+log()  { echo -e "$*"; }
+ok()   { echo -e "✓ $*"; }
+warn() { echo -e "⚠ $*"; }
+err()  { echo -e "❌ $*" >&2; }
 
-# Check if running on Kali Linux
-if [ -f /etc/os-release ]; then
-    if grep -qi "kali" /etc/os-release; then
-        echo "✓ Kali Linux detected"
-    else
-        echo "⚠ Warning: Not running on Kali Linux"
-        echo "  This script is optimized for Kali, but should work on other Debian-based systems"
+die() { err "$*"; exit 1; }
+
+cleanup() {
+  # If venv is active, try to deactivate quietly
+  if [[ -n "${VIRTUAL_ENV:-}" ]]; then
+    deactivate >/dev/null 2>&1 || true
+  fi
+}
+trap cleanup EXIT
+
+need_cmd() {
+  command -v "$1" >/dev/null 2>&1 || die "Missing required command: $1"
+}
+
+is_root() { [[ "${EUID:-$(id -u)}" -eq 0 ]]; }
+
+SUDO="sudo"
+if is_root; then
+  SUDO=""
+fi
+
+# --------- banner ----------
+log "╔═══════════════════════════════════════════════════════════════════════╗"
+log "║                                                                       ║"
+log "║        Testing Tool - Kali Linux Installer                            ║"
+log "║                    Developed by Team Supreme X                        ║"
+log "║                                                                       ║"
+log "╚═══════════════════════════════════════════════════════════════════════╝"
+log ""
+
+# Run from script directory (important for relative paths)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+# --------- OS check ----------
+if [[ -f /etc/os-release ]]; then
+  if grep -qi "kali" /etc/os-release; then
+    ok "Kali Linux detected"
+  else
+    warn "Not running on Kali Linux"
+    log "  This script is optimized for Kali, but should work on Debian-based systems"
+  fi
+fi
+log ""
+
+# --------- Python check ----------
+log "[*] Checking Python version..."
+need_cmd python3
+
+PYTHON_VERSION="$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')"
+PY_OK="$(python3 -c 'import sys; print(int(sys.version_info >= (3,7)))')"
+
+if [[ "$PY_OK" == "1" ]]; then
+  ok "Python ${PYTHON_VERSION} detected (OK)"
+else
+  die "Python 3.7+ required, found ${PYTHON_VERSION}. Install a newer python3 package."
+fi
+log ""
+
+# --------- apt + deps ----------
+# We need apt on Kali/Debian
+need_cmd apt-get
+
+log "[*] Updating apt indexes..."
+$SUDO apt-get update -y
+
+log "[*] Installing system dependencies..."
+$SUDO apt-get install -y \
+  python3-dev \
+  python3-venv \
+  python3-pip \
+  build-essential \
+  libffi-dev \
+  gcc \
+  ca-certificates \
+  curl \
+  git
+
+ok "System dependencies installed"
+log ""
+
+# --------- venv ----------
+VENV_DIR="${VENV_DIR:-venv}"
+
+if [[ ! -d "$VENV_DIR" ]]; then
+  log "[*] Creating virtual environment at ./${VENV_DIR} ..."
+  python3 -m venv "$VENV_DIR"
+  ok "Virtual environment created"
+else
+  ok "Virtual environment already exists"
+fi
+log ""
+
+log "[*] Activating virtual environment..."
+# shellcheck disable=SC1090
+source "$VENV_DIR/bin/activate"
+ok "venv activated"
+log ""
+
+log "[*] Upgrading pip/setuptools/wheel..."
+python -m pip install --upgrade pip setuptools wheel
+ok "pip upgraded"
+log ""
+
+# --------- requirements ----------
+REQ_FILE="requirements-kali-linux.txt"
+if [[ ! -f "$REQ_FILE" ]]; then
+  die "Missing ${REQ_FILE} in ${SCRIPT_DIR}. Please place it next to install-kali.sh"
+fi
+
+log "[*] Installing Python packages from ${REQ_FILE} ..."
+# Avoid user-site installs inside venv; fail clearly if something breaks.
+python -m pip install -r "$REQ_FILE"
+ok "Python packages installed successfully"
+log ""
+
+# --------- verify imports ----------
+log "[*] Verifying installation..."
+python -c "import aiohttp; print('✓ aiohttp:', aiohttp.__version__)" 2>/dev/null || warn "aiohttp not installed"
+python -c "import requests; print('✓ requests:', requests.__version__)" 2>/dev/null || warn "requests not installed"
+python -c "import aiodns; print('✓ aiodns: OK')" 2>/dev/null || warn "aiodns not installed (optional)"
+python -c "import cchardet; print('✓ cchardet: OK')" 2>/dev/null || warn "cchardet not installed (optional)"
+log ""
+
+# --------- scripts executable ----------
+log "[*] Making scripts executable..."
+MAIN_SCRIPT="main-kali-linux.py"
+LOAD_SCRIPT="load_tester.py"
+
+[[ -f "$MAIN_SCRIPT" ]] || warn "Missing ${MAIN_SCRIPT} (skip chmod)"
+[[ -f "$LOAD_SCRIPT" ]] || warn "Missing ${LOAD_SCRIPT} (skip chmod)"
+
+[[ -f "$MAIN_SCRIPT" ]] && chmod +x "$MAIN_SCRIPT" || true
+[[ -f "$LOAD_SCRIPT" ]] && chmod +x "$LOAD_SCRIPT" || true
+ok "Script permissions updated"
+log ""
+
+# --------- basic test ----------
+if [[ -f "$MAIN_SCRIPT" ]]; then
+  log "[*] Testing basic functionality..."
+  python "$MAIN_SCRIPT" --help >/dev/null
+  ok "Tool is working correctly"
+  log ""
+else
+  warn "Skipping tool test because ${MAIN_SCRIPT} not found"
+  log ""
+fi
+
+# --------- optional symlink ----------
+if [[ -f "$MAIN_SCRIPT" ]]; then
+  read -r -p "Create system-wide command 'loadtest'? (y/n) " REPLY
+  if [[ "${REPLY:-n}" =~ ^[Yy]$ ]]; then
+    if [[ -z "$SUDO" ]]; then
+      warn "You are running as root; will create symlink directly."
     fi
+    SCRIPT_PATH="${SCRIPT_DIR}/${MAIN_SCRIPT}"
+    $SUDO ln -sf "$SCRIPT_PATH" /usr/local/bin/loadtest
+    ok "Created command: loadtest"
+    log "  You can now run: loadtest http://target.com -n 1000 -c 50"
+  fi
+  log ""
 fi
-echo ""
 
-# Check Python version
-echo "[*] Checking Python version..."
-PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
-PYTHON_MAJOR=$(echo $PYTHON_VERSION | cut -d. -f1)
-PYTHON_MINOR=$(echo $PYTHON_VERSION | cut -d. -f2)
-
-if [ "$PYTHON_MAJOR" -ge 3 ] && [ "$PYTHON_MINOR" -ge 7 ]; then
-    echo "✓ Python $PYTHON_VERSION detected (OK)"
+# --------- ulimit hint ----------
+log "[*] Checking file descriptor limit..."
+CURRENT_LIMIT="$(ulimit -n)"
+if [[ "$CURRENT_LIMIT" -lt 10000 ]]; then
+  warn "Current limit: ${CURRENT_LIMIT} (recommended: 10000+ for high concurrency)"
+  log "  Temporary (current shell): ulimit -n 10000"
+  log "  Permanent (bash): echo 'ulimit -n 10000' >> ~/.bashrc"
 else
-    echo "❌ Python 3.7+ required, found $PYTHON_VERSION"
-    echo "   Install with: sudo apt install python3.9"
-    exit 1
+  ok "File descriptor limit: ${CURRENT_LIMIT} (OK)"
 fi
-echo ""
+log ""
 
-# Check pip3
-echo "[*] Checking pip3..."
-if command -v pip3 &> /dev/null; then
-    echo "✓ pip3 is installed"
-else
-    echo "❌ pip3 not found"
-    echo "   Installing pip3..."
-    sudo apt update
-    sudo apt install -y python3-pip
-fi
-echo ""
-
-# Install system dependencies
-echo "[*] Installing system dependencies..."
-sudo apt update
-sudo apt install -y python3-dev build-essential libffi-dev gcc
-echo "✓ System dependencies installed"
-echo ""
-
-# Install Python packages
-echo "[*] Installing Python packages..."
-pip3 install -r requirements-kali-linux.txt
-
-if [ $? -eq 0 ]; then
-    echo "✓ Python packages installed successfully"
-else
-    echo "⚠ Some packages failed to install"
-    echo "  Trying with --user flag..."
-    pip3 install --user -r requirements-kali-linux.txt
-fi
-echo ""
-
-# Verify installation
-echo "[*] Verifying installation..."
-python3 -c "import aiohttp; print('✓ aiohttp:', aiohttp.__version__)" 2>/dev/null || echo "❌ aiohttp not installed"
-python3 -c "import requests; print('✓ requests:', requests.__version__)" 2>/dev/null || echo "❌ requests not installed"
-python3 -c "import aiodns; print('✓ aiodns: OK')" 2>/dev/null || echo "⚠ aiodns not installed (optional)"
-python3 -c "import cchardet; print('✓ cchardet: OK')" 2>/dev/null || echo "⚠ cchardet not installed (optional)"
-echo ""
-
-# Make scripts executable
-echo "[*] Making scripts executable..."
-chmod +x main-kali-linux.py
-chmod +x load_tester.py
-echo "✓ Scripts are now executable"
-echo ""
-
-# Test basic functionality
-echo "[*] Testing basic functionality..."
-python3 main-kali-linux.py --help > /dev/null 2>&1
-if [ $? -eq 0 ]; then
-    echo "✓ Tool is working correctly"
-else
-    echo "❌ Tool test failed"
-    exit 1
-fi
-echo ""
-
-# Optional: Create symbolic link
-read -p "Create system-wide command 'loadtest'? (y/n) " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    SCRIPT_PATH=$(pwd)/main-kali-linux.py
-    sudo ln -sf "$SCRIPT_PATH" /usr/local/bin/loadtest
-    echo "✓ Created command: loadtest"
-    echo "  You can now run: loadtest http://target.com -n 1000 -c 50"
-fi
-echo ""
-
-# Increase file descriptor limit
-echo "[*] Checking file descriptor limit..."
-CURRENT_LIMIT=$(ulimit -n)
-if [ "$CURRENT_LIMIT" -lt 10000 ]; then
-    echo "⚠ Current limit: $CURRENT_LIMIT (recommended: 10000+)"
-    echo "  To increase temporarily: ulimit -n 10000"
-    echo "  To increase permanently, add to ~/.bashrc:"
-    echo "    echo 'ulimit -n 10000' >> ~/.bashrc"
-else
-    echo "✓ File descriptor limit: $CURRENT_LIMIT (OK)"
-fi
-echo ""
-
-echo "╔═══════════════════════════════════════════════════════════════════════╗"
-echo "║                    Installation Complete!                            ║"
-echo "╚═══════════════════════════════════════════════════════════════════════╝"
-echo ""
-echo "Quick Start:"
-echo "  python3 main-kali-linux.py http://localhost:8000 -n 1000 -c 50"
-echo ""
-echo "With cache busting:"
-echo "  python3 main-kali-linux.py http://localhost:8000 -n 1000 -c 50 --no-cache"
-echo ""
-echo "For help:"
-echo "  python3 main-kali-linux.py --help"
-echo ""
-echo "Documentation:"
-echo "  README.md - General documentation"
-echo "  README-KALI-LINUX.md - Kali Linux specific guide"
-echo ""
-echo "⚠️  LEGAL NOTICE:"
-echo "  Only test systems you own or have explicit written authorization to test."
-echo "  Unauthorized testing is illegal and may result in criminal prosecution."
-echo ""
+# --------- done ----------
+log "╔═══════════════════════════════════════════════════════════════════════╗"
+log "║                    Installation Complete!                             ║"
+log "╚═══════════════════════════════════════════════════════════════════════╝"
+log ""
+log "Quick Start:"
+log "  source ${VENV_DIR}/bin/activate"
+log "  python ${MAIN_SCRIPT} http://localhost:8000 -n 1000 -c 50"
+log ""
+log "With cache busting:"
+log "  python ${MAIN_SCRIPT} http://localhost:8000 -n 1000 -c 50 --no-cache"
+log ""
+log "For help:"
+log "  python ${MAIN_SCRIPT} --help"
+log ""
+log "Documentation:"
+log "  README.md - General documentation"
+log "  README-KALI-LINUX.md - Kali Linux specific guide"
+log ""
+log "⚠️  LEGAL NOTICE:"
+log "  Only test systems you own or have explicit written authorization to test."
+log "  Unauthorized testing is illegal and may result in criminal prosecution."
+log ""
