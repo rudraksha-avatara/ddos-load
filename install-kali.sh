@@ -135,7 +135,7 @@ log "[*] Verifying installation..."
 python -c "import aiohttp; print('✓ aiohttp:', aiohttp.__version__)" 2>/dev/null || warn "aiohttp not installed"
 python -c "import requests; print('✓ requests:', requests.__version__)" 2>/dev/null || warn "requests not installed"
 python -c "import aiodns; print('✓ aiodns: OK')" 2>/dev/null || warn "aiodns not installed (optional)"
-python -c "import cchardet; print('✓ cchardet: OK')" 2>/dev/null || warn "cchardet not installed (optional)"
+python -c "import chardet; print('✓ chardet: OK')" 2>/dev/null || warn "chardet not installed (optional)"
 log ""
 
 # --------- scripts executable ----------
