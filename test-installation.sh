@@ -4,7 +4,7 @@
 # Verifies that the load testing tool is properly installed
 #
 
-echo "Testing Load Testing Tool Installation"
+echo "DDoS Attack Tool Installation"
 echo "======================================="
 echo ""
 
@@ -57,16 +57,16 @@ echo ""
 
 # Test 4: Script executable
 echo "[4/6] Checking if script is executable..."
-if [ -x "advanced_load_tester.py" ]; then
+if [ -x "main-kali-linux.py" ]; then
     echo "✓ Script is executable"
 else
-    echo "⚠ Script not executable - run: chmod +x advanced_load_tester.py"
+    echo "⚠ Script not executable - run: chmod +x main-kali-linux.py"
 fi
 echo ""
 
 # Test 5: Help command
 echo "[5/6] Testing help command..."
-python3 advanced_load_tester.py --help > /dev/null 2>&1
+python3 main-kali-linux.py --help > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     echo "✓ Help command works"
 else
@@ -81,7 +81,7 @@ read -p "Run a basic test against httpbin.org? (y/n) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Running test with 10 requests, 2 concurrent..."
-    python3 advanced_load_tester.py http://httpbin.org/get -n 10 -c 2
+    python3 main-kali-linux.py http://httpbin.org/get -n 10 -c 2
     if [ $? -eq 0 ]; then
         echo "✓ Basic test passed"
     else
@@ -100,7 +100,7 @@ echo ""
 echo "The tool is ready to use."
 echo ""
 echo "Example commands:"
-echo "  python3 advanced_load_tester.py http://localhost:8000 -n 1000 -c 50"
-echo "  python3 advanced_load_tester.py http://localhost:8000 -n 5000 -c 100 --no-cache"
-echo "  python3 advanced_load_tester.py http://localhost:8000 -d 60 -c 100 --no-cache --random-ua"
+echo "  python3 main-kali-linux.py http://localhost:8000 -n 1000 -c 50"
+echo "  python3 main-kali-linux.py http://localhost:8000 -n 5000 -c 100 --no-cache"
+echo "  python3 main-kali-linux.py http://localhost:8000 -d 60 -c 100 --no-cache --random-ua"
 echo ""
