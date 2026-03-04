@@ -35,7 +35,7 @@ Developed by **Team Supreme X**
 
 ## 🎯 Overview
 
-This DDoS Load Tool is specifically optimized for security professionals using Kali Linux. It's designed for authorized penetration testing, security assessments, and stress testing of web applications during security audits.
+This DDoS Load Tool is specifically optimized for security professionals using Kali Linux. It's designed for authorized penetration testing, security assessments, and ddos load stress of web applications during security audits.
 
 ### Why Use This on Kali Linux?
 
