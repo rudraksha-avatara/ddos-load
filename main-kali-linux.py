@@ -424,40 +424,40 @@ def main():
         epilog="""
 Examples:
   # Basic test with 10,000 requests and 100 concurrent connections
-  python3 advanced_load_tester.py http://localhost:8000 -n 10000 -c 100
+  python3 main-kali-linux.py http://localhost:8000 -n 10000 -c 100
   
   # Test with cache busting enabled (bypass all caches)
-  python3 advanced_load_tester.py http://localhost:8000 -n 5000 -c 100 --no-cache
+  python3 main-kali-linux.py http://localhost:8000 -n 5000 -c 100 --no-cache
   
   # Run for 60 seconds with 200 concurrent connections
-  python3 advanced_load_tester.py http://localhost:8000 -d 60 -c 200
+  python3 main-kali-linux.py http://localhost:8000 -d 60 -c 200
   
   # Maximum stress test with all features
-  python3 advanced_load_tester.py http://localhost:8000 -n 50000 -c 500 --no-cache --random-ua
+  python3 main-kali-linux.py http://localhost:8000 -n 50000 -c 500 --no-cache --random-ua
   
   # POST request with custom headers and body
-  python3 advanced_load_tester.py http://localhost:8000/api -n 5000 -c 50 -m POST \\
+  python3 main-kali-linux.py http://localhost:8000/api -n 5000 -c 50 -m POST \\
     -H "Content-Type: application/json" --body '{"test": "data"}'
   
   # Rate-limited test (100 requests per second)
-  python3 advanced_load_tester.py http://localhost:8000 -n 1000 -c 10 --rate-limit 100
+  python3 main-kali-linux.py http://localhost:8000 -n 1000 -c 10 --rate-limit 100
   
   # Test with proxy (for Burp Suite integration)
-  python3 advanced_load_tester.py http://localhost:8000 -n 500 -c 25 --proxy http://127.0.0.1:8080
+  python3 main-kali-linux.py http://localhost:8000 -n 500 -c 25 --proxy http://127.0.0.1:8080
   
   # Stealth test (low and slow)
-  python3 advanced_load_tester.py http://target.com -n 500 -c 10 --rate-limit 20 --random-ua
+  python3 main-kali-linux.py http://target.com -n 500 -c 10 --rate-limit 20 --random-ua
 
 Kali Linux Specific:
   # Test discovered endpoint from nmap/nikto
-  python3 advanced_load_tester.py http://target.com/admin -n 1000 -c 50 --no-cache
+  python3 main-kali-linux.py http://target.com/admin -n 1000 -c 50 --no-cache
   
   # Test API with authorization (from Burp Suite)
-  python3 advanced_load_tester.py http://target.com/api -n 2000 -c 100 \\
+  python3 main-kali-linux.py http://target.com/api -n 2000 -c 100 \\
     -H "Authorization: Bearer token123" --no-cache
   
   # Test login endpoint for rate limiting
-  python3 advanced_load_tester.py http://target.com/login -n 500 -c 25 -m POST \\
+  python3 main-kali-linux.py http://target.com/login -n 500 -c 25 -m POST \\
     --body "username=admin&password=test" --no-cache
 
 Legal Notice:
