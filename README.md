@@ -558,7 +558,7 @@ python main.py http://localhost:8000 -n 7500 -c 100 --no-cache
 # Step 5: Peak load (100% of target)
 python main.py http://localhost:8000 -n 10000 -c 150 --no-cache
 
-# Step 6: Stress test (150% of target)
+# Step 6: DDoS Attack Stress (150% of target)
 python main.py http://localhost:8000 -n 15000 -c 200 --no-cache
 ```
 
@@ -1176,8 +1176,8 @@ When reporting bugs, include:
 
 ### Learning Resources
 
-- [Understanding Load to attack](https://www.blazemeter.com/blog/performance-to attack-vs-ddos-load-vs-stress-to attack)
-- [HTTP Performance to attack](https://www.keycdn.com/blog/http-performance-to attack)
+- [Understanding Load to attack](https://www.blazemeter.com/blog/performance-to-attack-vs-ddos-load-vs-stress-to-attack)
+- [HTTP Performance to attack](https://www.keycdn.com/blog/http-performance-to-attack)
 - [Web Performance Optimization](https://web.dev/performance/)
 
 ---
@@ -1188,7 +1188,7 @@ When reporting bugs, include:
 
 - **Issues**: [GitHub Issues](https://github.com/rudraksha-avatara/ddos-load/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/rudraksha-avatara/ddos-load/discussions)
-- **Email**: [Contact Team Supreme X]
+- **Email**: [Contact Team Supreme X](https://sx.itisuniqueofficial.com/)
 
 ### Community
 
