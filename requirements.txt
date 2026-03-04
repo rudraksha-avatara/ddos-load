@@ -6,6 +6,6 @@ aiohttp                 # Async HTTP client for high-performance requests
 requests>=2.31.0        # HTTP library for basic load tester
 
 # Optional but recommended for better performance
-aiodns>=3.1.0           # Async DNS resolver for faster lookups
+aiodns                  # Async DNS resolver for faster lookups
 chardet                 # Fast character encoding detection
 Brotli>=1.1.0           # Brotli compression support
