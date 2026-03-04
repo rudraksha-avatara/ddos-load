@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Installation Script for Kali Linux
-# Advanced Load Testing Tool - Team Supreme X
+# DDoS Attack Tool - Team Supreme X
 #
 # Usage: ./install-kali.sh
 #
@@ -10,7 +10,7 @@ set -e
 
 echo "╔═══════════════════════════════════════════════════════════════════════╗"
 echo "║                                                                       ║"
-echo "║        Advanced Load Testing Tool - Kali Linux Installer             ║"
+echo "║        DDoS Attack Tool - Kali Linux Installer             ║"
 echo "║                    Developed by Team Supreme X                        ║"
 echo "║                                                                       ║"
 echo "╚═══════════════════════════════════════════════════════════════════════╝"
@@ -63,14 +63,14 @@ echo ""
 
 # Install Python packages
 echo "[*] Installing Python packages..."
-pip3 install -r requirements.txt
+pip3 install -r requirements-kali-linux.txt
 
 if [ $? -eq 0 ]; then
     echo "✓ Python packages installed successfully"
 else
     echo "⚠ Some packages failed to install"
     echo "  Trying with --user flag..."
-    pip3 install --user -r requirements.txt
+    pip3 install --user -r requirements-kali-linux.txt
 fi
 echo ""
 
@@ -84,14 +84,14 @@ echo ""
 
 # Make scripts executable
 echo "[*] Making scripts executable..."
-chmod +x advanced_load_tester.py
+chmod +x main-kali-linux.py
 chmod +x load_tester.py
 echo "✓ Scripts are now executable"
 echo ""
 
 # Test basic functionality
 echo "[*] Testing basic functionality..."
-python3 advanced_load_tester.py --help > /dev/null 2>&1
+python3 main-kali-linux.py --help > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     echo "✓ Tool is working correctly"
 else
@@ -104,7 +104,7 @@ echo ""
 read -p "Create system-wide command 'loadtest'? (y/n) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    SCRIPT_PATH=$(pwd)/advanced_load_tester.py
+    SCRIPT_PATH=$(pwd)/main-kali-linux.py
     sudo ln -sf "$SCRIPT_PATH" /usr/local/bin/loadtest
     echo "✓ Created command: loadtest"
     echo "  You can now run: loadtest http://target.com -n 1000 -c 50"
@@ -129,13 +129,13 @@ echo "║                    Installation Complete!                            �
 echo "╚═══════════════════════════════════════════════════════════════════════╝"
 echo ""
 echo "Quick Start:"
-echo "  python3 advanced_load_tester.py http://localhost:8000 -n 1000 -c 50"
+echo "  python3 main-kali-linux.py http://localhost:8000 -n 1000 -c 50"
 echo ""
 echo "With cache busting:"
-echo "  python3 advanced_load_tester.py http://localhost:8000 -n 1000 -c 50 --no-cache"
+echo "  python3 main-kali-linux.py http://localhost:8000 -n 1000 -c 50 --no-cache"
 echo ""
 echo "For help:"
-echo "  python3 advanced_load_tester.py --help"
+echo "  python3 main-kali-linux.py --help"
 echo ""
 echo "Documentation:"
 echo "  README.md - General documentation"
