@@ -1,0 +1,11 @@
+# DDoS Load Tool Requirements
+# Install with: pip install -r requirements.txt
+
+# Core dependencies
+aiohttp>=3.9.0          # Async HTTP client for high-performance requests
+requests>=2.31.0        # HTTP library for basic load tester
+
+# Optional but recommended for better performance
+aiodns>=3.1.0           # Async DNS resolver for faster lookups
+cchardet>=2.1.7         # Fast character encoding detection
+Brotli>=1.1.0           # Brotli compression support
