@@ -18,7 +18,7 @@ requests>=2.31.0
 
 # Async DNS resolver for faster DNS lookups
 # Significantly improves performance for high-concurrency tests
-aiodns>=3.1.0
+aiodns
 
 # Fast character encoding detection
 # Speeds up response parsing
