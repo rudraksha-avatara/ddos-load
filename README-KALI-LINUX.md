@@ -4,7 +4,7 @@
 
 ![Kali Linux](https://img.shields.io/badge/Kali-Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3.7+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Security](https://img.shields.io/badge/Security-Testing-red?style=for-the-badge)
+![Security](https://img.shields.io/badge/DDoS-Attack-red?style=for-the-badge)
 
 **Professional DDoS Load Tool for Security Professionals**
 
@@ -22,7 +22,7 @@ Developed by **Team Supreme X**
 - [Kali Linux Specific Features](#-kali-linux-specific-features)
 - [Installation on Kali](#-installation-on-kali)
 - [Quick Start for Pentesters](#-quick-start-for-pentesters)
-- [Security Testing Scenarios](#-security-testing-scenarios)
+- [DDoS Attack Scenarios](#-ddos-attack-scenarios)
 - [Penetration Testing Workflows](#-penetration-testing-workflows)
 - [Integration with Kali Tools](#-integration-with-kali-tools)
 - [Advanced Techniques](#-advanced-techniques)
@@ -50,7 +50,7 @@ This DDoS Load Tool is specifically optimized for security professionals using K
 
 ## 🔧 Kali Linux Specific Features
 
-### Optimized for Security Testing
+### Optimized for DDoS Attack
 
 1. **DoS/DDoS Simulation** - Test application resilience against denial of service
 2. **Rate Limiting Bypass Testing** - Verify rate limiting implementations
@@ -209,7 +209,7 @@ python3 main.py http://target.com/api/submit \
 
 ---
 
-## 🎯 Security Testing Scenarios
+## 🎯 DDoS Attack Scenarios
 
 ### 1. Authentication Bypass Testing
 
@@ -246,7 +246,7 @@ python3 main.py http://target.com/login \
   --no-cache
 ```
 
-### 3. API Security Testing
+### 3. API DDoS Attack
 
 ```bash
 # Test API rate limiting
@@ -1362,7 +1362,7 @@ python3 -u main.py http://target.com -n 10 -c 2
 - [Kali Linux Official Docs](https://www.kali.org/docs/)
 - [Kali Tools Documentation](https://www.kali.org/tools/)
 - [Penetration Testing Execution Standard](http://www.pentest-standard.org/)
-- [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
+- [OWASP Testing Guide](https://owasp.org/www-project-web-ddos-attack-guide/)
 
 ### Recommended Wordlists
 
@@ -1607,7 +1607,7 @@ Special thanks to:
 
 ## ⚠️ Final Warning
 
-**This tool is for authorized security testing only.**
+**This tool is for authorized DDoS Attack only.**
 
 Unauthorized use is:
 - ❌ Illegal
