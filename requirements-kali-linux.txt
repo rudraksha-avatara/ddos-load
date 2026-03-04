@@ -1,1 +1,90 @@
+# Production-Ready DDoS Attack Tool Requirements
+# Optimized for Kali Linux and Security Testing
+# Install with: pip3 install -r requirements-kali-linux.txt
 
+# ============================================================================
+# CORE DEPENDENCIES (Required)
+# ============================================================================
+
+# Async HTTP client for high-performance requests
+aiohttp>=3.9.0
+
+# HTTP library for basic to attack (fallback)
+requests>=2.31.0
+
+# ============================================================================
+# PERFORMANCE BOOSTERS (Highly Recommended)
+# ============================================================================
+
+# Async DNS resolver for faster DNS lookups
+# Significantly improves performance for high-concurrency tests
+aiodns>=3.1.0
+
+# Fast character encoding detection
+# Speeds up response parsing
+cchardet>=2.1.7
+
+# Brotli compression support
+# Enables compressed response handling
+Brotli>=1.1.0
+
+# ============================================================================
+# OPTIONAL DEPENDENCIES (For Advanced Features)
+# ============================================================================
+
+# For colored terminal output (optional, for better UX)
+# colorama>=0.4.6
+
+# For progress bars (optional)
+# tqdm>=4.66.0
+
+# ============================================================================
+# KALI LINUX NOTES
+# ============================================================================
+#
+# Installation on Kali Linux:
+#   sudo apt update
+#   pip3 install -r requirements-kali-linux.txt
+#
+# If you encounter permission errors:
+#   pip3 install --user -r requirements-kali-linux.txt
+#
+# For system-wide installation (not recommended):
+#   sudo pip3 install -r requirements-kali-linux.txt
+#
+# Verify installation:
+#   python3 -c "import aiohttp; print('aiohttp:', aiohttp.__version__)"
+#   python3 -c "import aiodns; print('aiodns: OK')"
+#
+# ============================================================================
+# TROUBLESHOOTING
+# ============================================================================
+#
+# If aiohttp fails to install:
+#   sudo apt install python3-dev build-essential
+#   pip3 install aiohttp
+#
+# If aiodns fails to install:
+#   sudo apt install python3-dev libffi-dev
+#   pip3 install aiodns
+#
+# If cchardet fails to install:
+#   sudo apt install python3-dev gcc
+#   pip3 install cchardet
+#
+# Minimal installation (core only):
+#   pip3 install aiohttp requests
+#
+# ============================================================================
+# PYTHON VERSION
+# ============================================================================
+#
+# Requires: Python 3.7 or higher
+# Recommended: Python 3.9 or higher
+#
+# Check your version:
+#   python3 --version
+#
+# Kali Linux typically comes with Python 3.9+ pre-installed
+#
+# ============================================================================
