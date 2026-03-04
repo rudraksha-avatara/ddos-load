@@ -47,11 +47,11 @@ else
     echo "⚠ aiodns not installed (optional, but recommended)"
 fi
 
-python3 -c "import cchardet" 2>/dev/null
+python3 -c "import chardet" 2>/dev/null
 if [ $? -eq 0 ]; then
-    echo "✓ cchardet is installed (performance boost)"
+    echo "✓ chardet is installed (performance boost)"
 else
-    echo "⚠ cchardet not installed (optional, but recommended)"
+    echo "⚠ chardet not installed (optional, but recommended)"
 fi
 echo ""
 
