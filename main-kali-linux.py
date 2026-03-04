@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 DDoS Attack Tool - Kali Linux Edition
-High-performance DDoS Attack for powerful servers attacks
+High-performance load testing for powerful servers and security assessments
 
 Developed by Team Supreme X
 Optimized for Kali Linux and Penetration Testing
@@ -30,13 +30,20 @@ import json
 import random
 import string
 import sys
-import platform
+import os
 from urllib.parse import urlparse, urlencode
+
 try:
     import aiodns
     DNS_AVAILABLE = True
 except ImportError:
     DNS_AVAILABLE = False
+
+try:
+    import ssl as ssl_module
+    SSL_AVAILABLE = True
+except ImportError:
+    SSL_AVAILABLE = False
 
 class AdvancedLoadTester:
     def __init__(self, url, num_requests, concurrency, duration=None, 
@@ -99,7 +106,7 @@ class AdvancedLoadTester:
         banner = """
 ╔═══════════════════════════════════════════════════════════════════════╗
 ║                                                                       ║
-║        DDoS Attack Tool - Kali Linux Edition               ║
+║               DDoS Attack Tool - Kali Linux Edition                   ║
 ║                    Developed by Team Supreme X                        ║
 ║                                                                       ║
 ╚═══════════════════════════════════════════════════════════════════════╝
@@ -227,7 +234,8 @@ class AdvancedLoadTester:
                     task = asyncio.create_task(self.send_request(session))
                     tasks.append(task)
                 else:
-                    done, tasks = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
+                    done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
+                    tasks = list(pending)  # Convert set back to list
             
             if tasks:
                 await asyncio.wait(tasks)
